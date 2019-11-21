@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Caffeinated\Shinobi\ShinobiServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
     ],
 

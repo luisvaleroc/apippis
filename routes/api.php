@@ -32,3 +32,11 @@ Route::delete('brands/{brand}', 'BrandController@destroy')->name('brands.destroy
 ->middleware('permission:brands.destroy');
 Route::get('brands/{brand}/edit', 'BrandController@edit')->name('brands.edit')
 ->middleware('permission:brands.edit');
+
+Route::post('login', 'LogController@login');
+Route::post('login', 'LogController@logout');
+
+Route::post('register', 'LogController@register');
+Route::group(['middleware' => 'auth:api'], function(){
+Route::post('details', 'LogController@details');
+});

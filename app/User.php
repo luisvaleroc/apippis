@@ -7,13 +7,16 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 //use Caffeinated\Shinobi\Concerns\HasRolesAndPermissions;
 use Caffeinated\Shinobi\Traits\ShinobiTrait;
+use Laravel\Passport\HasApiTokens;
+
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
-    use ShinobiTrait;
+    use HasApiTokens, ShinobiTrait;
     //use HasRolesAndPermissions;
     //use Notifiable;
 
