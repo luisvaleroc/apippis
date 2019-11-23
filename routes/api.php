@@ -33,6 +33,25 @@ Route::delete('brands/{brand}', 'BrandController@destroy')->name('brands.destroy
 Route::get('brands/{brand}/edit', 'BrandController@edit')->name('brands.edit')
 ->middleware('permission:brands.edit');
 
+
+//Store
+Route::post('stores', 'StoreController@store')->name('stores.store')
+->middleware('permission:stores.create');
+Route::get('stores/{brand}', 'StoreController@index')->name('stores.index')
+->middleware('permission:stores.index');
+Route::get('stores/create', 'StoreController@create')->name('stores.create')
+->middleware('permission:stores.create');
+Route::put('stores/{store}', 'StoreController@update')->name('stores.update')
+->middleware('permission:stores.edit');
+Route::get('stores/{store}', 'StoreController@show')->name('stores.show')
+->middleware('permission:stores.show');
+Route::delete('stores/{store}', 'StoreController@destroy')->name('stores.destroy')
+->middleware('permission:stores.destroy');
+Route::get('stores/{store}/edit', 'StoreController@edit')->name('stores.edit')
+->middleware('permission:stores.edit');
+
+
+
 Route::post('login', 'LogController@login');
 Route::post('login', 'LogController@logout');
 
