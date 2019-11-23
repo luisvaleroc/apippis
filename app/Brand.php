@@ -10,7 +10,7 @@ class Brand extends Model
         'name', 'sector',
     ];
 
-    public function store()
+    public function Store()
      {
 
         return $this->hasMany('App\Store');

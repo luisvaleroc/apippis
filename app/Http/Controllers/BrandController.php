@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\brand;
+use App\Brand;
 use Validator;
 
 use Illuminate\Http\Request;

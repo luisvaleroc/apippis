@@ -9,7 +9,7 @@ class Store extends Model
     protected $fillable = [
         'name', 'address',
     ];
-    public function brand()
+    public function Brand()
     {
         return $this->belongsTo('App\Brand');
     }
