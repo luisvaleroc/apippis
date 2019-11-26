@@ -16,6 +16,9 @@ class BrandController extends Controller
      */
     public function index()
     {
+        // $brands = Post::Brand('id', 'DESC')
+        //     ->where('id', auth()->user()->brand_id)
+        //     ->paginate();
         $brands = Brand::paginate();
 
         return response()->json($brands, 200);
@@ -84,7 +87,8 @@ if ($validator->fails()) {
      */
     public function edit(brand $brand)
     {
-        //
+        
+        return response()->json($brand, 200);
     }
 
     /**
