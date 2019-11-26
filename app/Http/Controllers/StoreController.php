@@ -67,9 +67,9 @@ class StoreController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(brand $brand)
+    public function show(Store $store)
     {
-        return response()->json($brand, 200);
+        return response()->json($store, 200);
     }
 
     /**

@@ -53,7 +53,7 @@ Route::get('stores/{store}/edit', 'StoreController@edit')->name('stores.edit')
 
 
 Route::post('login', 'LogController@login');
-Route::post('login', 'LogController@logout');
+Route::post('logout', 'LogController@logout');
 
 Route::post('register', 'LogController@register');
 Route::group(['middleware' => 'auth:api'], function(){
