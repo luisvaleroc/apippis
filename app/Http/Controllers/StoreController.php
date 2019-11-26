@@ -18,9 +18,9 @@ class StoreController extends Controller
     public function index(Brand $brand)
     {
         
-        //$stores= $brand->Store;
-       // $brand1 = Brand::find(1)->firts();
-        return response()->json($brand, 200);
+        $stores= $brand->Store;
+      
+        return response()->json($stores, 200);
         
     }
 
