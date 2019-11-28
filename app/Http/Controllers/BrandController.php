@@ -5,10 +5,21 @@ namespace App\Http\Controllers;
 use App\Brand;
 use Validator;
 
+
+use Illuminate\Support\Facades\Auth;
+
+ 
+
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
+
+
+ public function __construct()
+	{
+		$this->middleware('auth');
+	} 
     /**
      * Display a listing of the resource.
      *
@@ -16,11 +27,13 @@ class BrandController extends Controller
      */
     public function index()
     {
+	//$this->middleware('auth');
         // $brands = Post::Brand('id', 'DESC')
         //     ->where('id', auth()->user()->brand_id)
         //     ->paginate();
         $brands = Brand::paginate();
-
+	//$user= Auth::user();
+	
         return response()->json($brands, 200);
         
     }

@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+//URL::forceScheme('https');
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -53,9 +56,9 @@ Route::get('stores/{store}/edit', 'StoreController@edit')->name('stores.edit')
 
 
 Route::post('login', 'LogController@login');
-Route::post('logout', 'LogController@logout');
+//Route::post('logout', 'LogController@logout');
 
 Route::post('register', 'LogController@register');
 Route::group(['middleware' => 'auth:api'], function(){
-Route::post('details', 'LogController@details');
+Route::get('details', 'LogController@details');
 });
