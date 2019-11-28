@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller; 
 use App\User; 
-use App\Brand;
+
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 class LogController extends Controller
@@ -68,7 +68,7 @@ class LogController extends Controller
 	 	//$brands = Brand::paginate();
             $user = Auth::user(); 
             return response()->json(['success' => $user], $this-> successStatus); 
-		return response()->json($brands, 200); 
+		return response()->json($user, 200); 
         } 
 
        

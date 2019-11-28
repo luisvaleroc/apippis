@@ -62,4 +62,10 @@ class User extends Authenticatable
         $query->where('name', "LIKE",  "%$name%");
        }
     }
+
+    public function Brand()
+     {
+
+        return $this->hasMany('App\Brand');
+     }
 }

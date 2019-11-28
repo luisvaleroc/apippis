@@ -6,6 +6,8 @@ use App\Store;
 use App\Brand;
 use Validator;
 
+use Illuminate\Support\Facades\Auth; 
+
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -15,13 +17,20 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Brand $brand)
+    public function index()
     {
+     //  $user = Auth::user(); 
         
+        //$stores= $brand->Store;
+        
+        //$user = Auth::user(); 
+        //$user = $user->brand;
+        //$user = $user->brand;
+
+        $brand = brand::orderBy('id', 'DESC')
+            ->where('id', auth()->user()->brand_id)->first();
         $stores= $brand->Store;
-      
-        return response()->json($brand, 200);
-        
+		return response()->json($brand, 200);
     }
 
     /**

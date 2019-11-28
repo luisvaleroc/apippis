@@ -40,7 +40,7 @@ Route::get('brands/{brand}/edit', 'BrandController@edit')->name('brands.edit')
 //Store
 Route::post('stores', 'StoreController@store')->name('stores.store')
 ->middleware('permission:stores.create');
-Route::get('stores/{brand}', 'StoreController@index')->name('stores.index')
+Route::get('stores', 'StoreController@index')->name('stores.index')
 ->middleware('permission:stores.index');
 Route::get('stores/create', 'StoreController@create')->name('stores.create')
 ->middleware('permission:stores.create');
@@ -60,5 +60,7 @@ Route::post('login', 'LogController@login');
 
 Route::post('register', 'LogController@register');
 Route::group(['middleware' => 'auth:api'], function(){
-Route::get('details', 'LogController@details');
+    Route::get('stores', 'StoreController@index')->name('stores.index')
+    ->middleware('permission:stores.index');
+    Route::get('details', 'LogController@details');
 });
