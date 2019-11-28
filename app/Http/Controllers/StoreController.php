@@ -20,7 +20,7 @@ class StoreController extends Controller
         
         $stores= $brand->Store;
       
-        return response()->json($stores, 200);
+        return response()->json($brand, 200);
         
     }
 

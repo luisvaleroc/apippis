@@ -177,6 +177,7 @@ return [
 
         Caffeinated\Shinobi\ShinobiServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+        Spatie\Cors\CorsServiceProvider::class,
 
     ],
 
