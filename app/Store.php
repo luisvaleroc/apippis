@@ -14,4 +14,10 @@ class Store extends Model
         return $this->belongsTo('App\Brand');
     }
     
+    
+    public function Solidwaste()
+     {
+
+        return $this->hasMany('App\Solidwaste');
+     }
 }

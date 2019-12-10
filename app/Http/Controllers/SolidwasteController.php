@@ -16,11 +16,18 @@ class SolidwasteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Store $store)
+    public function index($id)
     {
+        $store = Store::find($id);
         
-        $solidwastes= $store->Solidwaste;
-        return response()->json($solidwastes, 200);
+        $solidwastes= $store->solidwaste;
+    
+         //return response()->json($solidwastes, 200);
+
+        return response()->json([
+            
+           'solidwastes' => $solidwastes,
+        ], 200);
         
     }
 
@@ -43,15 +50,15 @@ class SolidwasteController extends Controller
     public function store(Request $request)
     {
         
-        $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'address' => 'required', 
-            'brand_id' => 'required', 
+        // $validator = Validator::make($request->all(), [ 
+        //     'name' => 'required', 
+        //     'address' => 'required', 
+        //     'brand_id' => 'required', 
            
-        ]);
-        if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
+        // ]);
+        // if ($validator->fails()) { 
+        //     return response()->json(['error'=>$validator->errors()], 401);            
+        // }
 
         $solidwaste = Solidwaste::create($request->all());
         
@@ -124,7 +131,7 @@ class SolidwasteController extends Controller
         $solidwaste = $solidwaste->delete();
         return response()->json([
             
-            "message" => "El local a sido eliminado correctamente.",
+            "message" => "La planilla a sido eliminada correctamente.",
         
         ], 200); 
     }

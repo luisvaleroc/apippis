@@ -53,6 +53,31 @@ Route::delete('stores/{store}', 'StoreController@destroy')->name('stores.destroy
 Route::get('stores/{store}/edit', 'StoreController@edit')->name('stores.edit')
 ->middleware('permission:stores.edit');
 
+//solid wastes
+Route::post('solidwastes', 'SolidwasteController@solidwaste')->name('solidwastes.solidwaste')
+->middleware('permission:solidwastes.create');
+Route::get('solidwastes/store/{id}', 'SolidwasteController@index')->name('solidwastes.index')
+->middleware('permission:solidwastes.index');
+Route::get('solidwastes/create', 'SolidwasteController@create')->name('solidwastes.create')
+->middleware('permission:solidwastes.create');
+Route::put('solidwastes/{solidwaste}', 'SolidwasteController@update')->name('solidwastes.update')
+->middleware('permission:solidwastes.edit');
+Route::get('solidwastes/{solidwaste}', 'SolidwasteController@show')->name('solidwastes.show')
+->middleware('permission:solidwastes.show');
+Route::delete('solidwastes/{solidwaste}', 'SolidwasteController@destroy')->name('solidwastes.destroy')
+->middleware('permission:solidwastes.destroy');
+Route::get('solidwastes/{solidwaste}/edit', 'SolidwasteController@edit')->name('solidwastes.edit')
+->middleware('permission:solidwastes.edit');
+
+
+
+
+
+
+
+
+
+
 
 
 Route::post('login', 'LogController@login');

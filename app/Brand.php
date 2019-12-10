@@ -20,5 +20,8 @@ class Brand extends Model
      {
          return $this->belongsTo('App\User');
      }
-     
+     public function Solidwaste()
+     {
+         return $this->belongsTo('App\Solidwaste');
+     }
 }
