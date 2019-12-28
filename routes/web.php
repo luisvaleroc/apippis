@@ -51,52 +51,40 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('permission:users.destroy');
 	Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')
 		->middleware('permission:users.edit');
-	// Brands
-	// Route::post('brands/store', 'BrandController@store')->name('brands.store')
-	// 	->middleware('permission:brands.create');
-	// Route::get('brands', 'BrandController@index')->name('brands.index')
-	// 	->middleware('permission:brands.index');
-	// Route::get('brands/create', 'BrandController@create')->name('brands.create')
-	// 	->middleware('permission:brands.create');
-	// Route::put('brands/{brand}', 'BrandController@update')->name('brands.update')
-	// 	->middleware('permission:brands.edit');
-	// Route::get('brands/{brand}', 'BrandController@show')->name('brands.show')
-	// 	->middleware('permission:brands.show');
-	// Route::delete('brands/{brand}', 'BrandController@destroy')->name('brands.destroy')
-	// 	->middleware('permission:brands.destroy');
-	// Route::get('brands/{brand}/edit', 'BrandController@edit')->name('brands.edit')
-	// 	->middleware('permission:brands.edit');
+	//Brands
+	Route::post('brands/store', 'BrandController@store')->name('brands.store')
+		->middleware('permission:brands.create');
+		
+	Route::get('brands', 'BrandController@index')->name('brands.index')
+		->middleware('permission:brands.index');
+	Route::get('brands/create', 'BrandController@create')->name('brands.create')
+		->middleware('permission:brands.create');
+	Route::put('brands/{brand}', 'BrandController@update')->name('brands.update')
+		->middleware('permission:brands.edit');
+	Route::get('brands/{brand}', 'BrandController@show')->name('brands.show')
+		->middleware('permission:brands.show');
+	Route::delete('brands/{brand}', 'BrandController@destroy')->name('brands.destroy')
+		->middleware('permission:brands.destroy');
+	Route::get('brands/{brand}/edit', 'BrandController@edit')->name('brands.edit')
+		->middleware('permission:brands.edit');
+
+
+		//stores
+	Route::post('stores/store', 'StoreController@store')->name('stores.store')
+	->middleware('permission:stores.create');
 	
-	// Contacts
-	// Route::post('contacts/store', 'contactController@store')->name('contacts.store')
-	// 	->middleware('permission:contacts.create');
-	// Route::get('contacts', 'contactController@index')->name('contacts.index')
-	// 	->middleware('permission:contacts.index');
-	// Route::get('contacts/create', 'contactController@create')->name('contacts.create')
-	// 	->middleware('permission:contacts.create');
-	// Route::put('contacts/{contact}', 'contactController@update')->name('contacts.update')
-	// 	->middleware('permission:contacts.edit');
-	// Route::get('contacts/{contact}', 'contactController@show')->name('contacts.show')
-	// 	->middleware('permission:contacts.show');
-	// Route::delete('contacts/{contact}', 'contactController@destroy')->name('contacts.destroy')
-	// 	->middleware('permission:contacts.destroy');
-	// Route::get('contacts/{contact}/edit', 'contactController@edit')->name('contacts.edit')
-	// 	->middleware('permission:contacts.edit');
+Route::get('stores', 'StoreController@index')->name('stores.index')
+	->middleware('permission:stores.index');
+Route::get('stores/create', 'StoreController@create')->name('stores.create')
+	->middleware('permission:stores.create');
+Route::put('stores/{brand}', 'StoreController@update')->name('stores.update')
+	->middleware('permission:stores.edit');
+Route::get('stores/{brand}', 'StoreController@show')->name('stores.show')
+	->middleware('permission:stores.show');
+Route::delete('stores/{brand}', 'StoreController@destroy')->name('stores.destroy')
+	->middleware('permission:stores.destroy');
+Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
+	->middleware('permission:brands.edit');
 
 
-	// Answer
-	// Route::post('answers/store', 'AnswerController@store')->name('answers.store')
-	// 	->middleware('permission:answers.create');
-	// Route::get('answers', 'AnswerController@index')->name('answers.index')
-	// 	->middleware('permission:answers.index');
-	// Route::get('answers/create', 'AnswerController@create')->name('answers.create')
-	// 	->middleware('permission:answers.create');
-	// Route::put('answers/{answer}', 'AnswerController@update')->name('answers.update')
-	// 	->middleware('permission:answers.edit');
-	// Route::get('answers/{answer}', 'AnswerController@show')->name('answers.show')
-	// 	->middleware('permission:answers.show');
-	// Route::delete('answers/{answer}', 'AnswerController@destroy')->name('answers.destroy')
-	// 	->middleware('permission:answers.destroy');
-	// Route::get('answers/{answer}/edit', 'AnswerController@edit')->name('answers.edit')
-	// 	->middleware('permission:answers.edit');
 });

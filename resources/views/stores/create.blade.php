@@ -7,12 +7,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                                <a class="navbar-brand" href="#">Roles</a>
+                                <a class="navbar-store" href="#">Locales</a>
                                 <ul class="nav nav-pills">
                                
                                   <li class="nav-item">
-                                        @can('roles.index')
-                                        <a href="{{ route('roles.index') }}" 
+                                        @can('stores.index')
+                                        <a href="{{ route('stores.index') }}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Ver
                                         </a>
@@ -23,14 +23,13 @@
                         </nav>
 
                 </div>
-                @include('common.success')
 
 
                 
                 <div class="panel-body">                    
-                    {{ Form::open(['route' => 'roles.store']) }}
+                    {{ Form::open(['route' => 'stores.store']) }}
 
-                        @include('roles.partials.form')
+                        @include('stores.partials.form')
                         
                     {{ Form::close() }}
                 </div>

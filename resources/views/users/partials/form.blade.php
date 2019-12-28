@@ -2,6 +2,17 @@
 	{{ Form::label('name', 'Nombre de la etiqueta') }}
 	{{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
 </div>
+<select name="brand_id" id="brand_id">
+	@if($user->brand=== null)
+
+	<option value=" ">Elija la empresa </option>
+	@else
+	<option value="{{$user->brand_id}}">{{ $user->brand->name}}</option> 
+	@endif
+		@foreach($brands as $brand)
+		<option value='{{$brand->id}}'>{{ $brand->name}}</option> 
+		@endforeach
+    </select>
 <hr>
 <h3>Lista de roles</h3>
 <div class="form-group">

@@ -10,11 +10,11 @@
                 </div>
                
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                    <a class="navbar-brand" href="#">Roles</a>
+                    <a class="navbar-store" href="#">Locales</a>
                     <ul class="nav nav-pills">
                       <li class="nav-item">
-                        @can('roles.create')
-                        <a href="{{ route('roles.create') }}" 
+                        @can('stores.create')
+                        <a href="{{ route('stores.create') }}" 
                         class="btn btn-sm btn-primary pull-right">
                             Crear
                         </a>
@@ -23,9 +23,9 @@
                       
                     </ul>
                     
-                    {{ Form::open(['route' => 'roles.index', 'method' => 'GET', 'class' => 'form-inline', 'user' => 'search']) }}
+                    {{ Form::open(['route' => 'stores.index', 'method' => 'GET', 'class' => 'form-inline', 'store' => 'search']) }}
                     <div class="form-group mx-sm-3 mb-2">
-                            {{ Form::text('name', null, ['placeholder' => 'Nombre del rol','class' => 'form-control', 'id' => 'name']) }}
+                            {{ Form::text('name', null, ['placeholder' => 'Buscar','class' => 'form-control', 'id' => 'name']) }}
 
                     </div>
                           <button type="submit" class="btn btn-primary mb-2">Buscar</button> 
@@ -38,25 +38,27 @@
         
                   
                 <div class="panel-body">
-                    <table id="roles" class="table table-striped table-hover">
+                    <table id="stores" class="table table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th width="10px">ID</th>
                                 <th>Nombre</th>
+                                <th>Dirección</th>
                                 <th colspan="3">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($roles as $role)
+                            @foreach($stores as $store)
                             <tr>
-                                <td>{{ $role->id }}</td>
-                                <td>{{ $role->name }}</td>
-                                @include('roles.partials.canlist')
+                                <td>{{ $store->id }}</td>
+                                <td>{{ $store->name }}</td>
+                                <td>{{ $store->address }}</td>
+                                @include('stores.partials.canlist')
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $roles->render() }}
+                    {{ $stores->render() }}
                 </div>
             </div>
         </div>
@@ -67,7 +69,7 @@
 
 <script>
         $(document).ready(function() {
-       $('#roles').DataTable();
+       $('#stores').DataTable();
    } );  
        </script> -->
 @endsection

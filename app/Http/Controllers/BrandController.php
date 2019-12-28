@@ -16,25 +16,31 @@ class BrandController extends Controller
 {
 
 
- public function __construct()
-	{
-		$this->middleware('auth');
-	} 
+//  public function __construct()
+// 	{
+// 		$this->middleware('auth');
+// 	} 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 	//$this->middleware('auth');
         // $brands = Post::Brand('id', 'DESC')
         //     ->where('id', auth()->user()->brand_id)
         //     ->paginate();
-        $brands = Brand::paginate();
+       
+        // $brands = Brand::all();
 	//$user= Auth::user();
 	
-        return response()->json($brands, 200);
+        // return response()->json($brands, 200);
+        
+        //$brands = Brand::paginate();
+        $brands = Brand::name($request->get('name'))->orderBy('id', 'DESC')->paginate();
+
+        return view('brands.index', compact('brands'));
         
     }
 
@@ -45,7 +51,8 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('brands.create');
+
     }
 
     /**
@@ -57,14 +64,19 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         
-        $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'sector' => 'required', 
+        // $validator = Validator::make($request->all(), [ 
+        //     'name' => 'required', 
+        //     'sector' => 'required', 
            
-        ]);
-if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
+        // ]);
+// if ($validator->fails()) { 
+//             return response()->json(['error'=>$validator->errors()], 401);            
+//         }
+
+$validateData = $request->validate([
+    'name' => 'required',
+    'sector' => 'required'
+]);
 
         $brand = brand::create($request->all());
         
@@ -74,11 +86,17 @@ if ($validator->fails()) {
             // ], 200);  
             
             //return response()->json($brand, 200);
-            return response()->json([
-                $brand,
-                "message" => "La Empresa a sido creada correctamente.",
+            
+            //este si
+            // return response()->json([
+            //     $brand,
+            //     "message" => "La Empresa a sido creada correctamente.",
 
-            ], 200);
+            // ], 200);
+
+            return redirect()->route('brands.create', $brand->id)
+            ->with('status', 'Empresa guardada con éxito');
+
     }
 
     /**
@@ -89,7 +107,10 @@ if ($validator->fails()) {
      */
     public function show(brand $brand)
     {
-        return response()->json($brand, 200);
+        return view('brands.show', compact('brand'));
+
+
+       // return response()->json($brand, 200);
     }
 
     /**
@@ -98,10 +119,15 @@ if ($validator->fails()) {
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(brand $brand)
+    public function edit($id)
     {
         
-        return response()->json($brand, 200);
+        //return response()->json($brand, 200);
+
+
+
+        $brand = Brand::find($id);
+        return view('brands.edit', compact('brand'));
     }
 
     /**
@@ -116,11 +142,16 @@ if ($validator->fails()) {
         
         
         $brand->update($request->all());
-        return response()->json([
-            $brand,
-            "message" => "La Empresa a sido actualizada correctamente.",
+
+
+        return redirect()->route('brands.edit', $brand->id)
+        ->with('status', 'Empresa guardada con éxito');
+
+        // return response()->json([
+        //     $brand,
+        //     "message" => "La Empresa a sido actualizada correctamente.",
         
-        ], 200);
+        // ], 200);
     }
 
     /**
@@ -129,12 +160,13 @@ if ($validator->fails()) {
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(brand $brand)
+    public function destroy($id)
     {
-        $brand = Brand::find($brand)->delete();
-        return response()->json([
-            "message" => "La Empresa a sido eliminada correctamente.",
+        $brand = Brand::find($id)->delete();
+        return back()->with('status', 'Eliminado correctamente');
+        // return response()->json([
+        //     "message" => "La Empresa a sido eliminada correctamente.",
         
-        ], 200); 
+        // ], 200); 
     }
 }

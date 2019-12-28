@@ -24,10 +24,8 @@ class SolidwasteController extends Controller
     
          //return response()->json($solidwastes, 200);
 
-        return response()->json([
-            
-           'solidwastes' => $solidwastes,
-        ], 200);
+        return response()->json(
+            $solidwastes, 200);
         
     }
 
@@ -47,7 +45,7 @@ class SolidwasteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, store $store)
     {
         
         // $validator = Validator::make($request->all(), [ 
@@ -60,8 +58,23 @@ class SolidwasteController extends Controller
         //     return response()->json(['error'=>$validator->errors()], 401);            
         // }
 
-        $solidwaste = Solidwaste::create($request->all());
+        //$solidwaste = Solidwaste::create($request->all());
         
+        $solidwaste->paper = $request->input('paper');
+        $solidwaste->paperboard = $request->input('paperboard');
+        $solidwaste->plastic = $request->input('plastic');
+        $solidwaste->pvc = $request->input('pvc');
+        $solidwaste->scrap = $request->input('scrap');
+        $solidwaste->glass = $request->input('glass');
+        $solidwaste->food = $request->input('food');
+        $solidwaste->ordinary = $request->input('ordinary');
+        $solidwaste->store_id =$store;
+    
+        $empleado->save();
+
+
+
+
         return response()->json([
             $solidwaste,
             "message" => "El Local a sido creado correctamente.",
@@ -98,13 +111,12 @@ class SolidwasteController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Store $store)
+    public function update(Request $request, Solidwaste $solidwaste)
     {
         
 
         $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'address' => 'required', 
+            'pvc' => 'required', 
             
            
         ]);
@@ -112,9 +124,9 @@ class SolidwasteController extends Controller
             return response()->json(['error'=>$validator->errors()], 401);            
         }
         
-        $store->update($request->all());
+        $solidwaste->update($request->all());
         return response()->json([
-            $store,
+            $solidwaste,
             "message" => "La Empresa a sido actualizada correctamente.",
         
         ], 200);

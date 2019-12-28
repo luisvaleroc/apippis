@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Caffeinated\Shinobi\Models\Role;
 
 use App\User;
+use App\Brand;
+
+
 class UserController extends Controller
 {
     /**
@@ -38,7 +41,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::get();
-        return view('users.edit', compact('user', 'roles'));
+        $brands = Brand::all();
+        
+        return view('users.edit', compact('user', 'roles', 'brands'));
     }
     /**
      * Update the specified resource in storage.
@@ -56,8 +61,11 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($request->all());
         $user->roles()->sync($request->get('roles'));
+        // return redirect()->route('users.edit', $user->id)
+        //     ->with('status', 'Usuario guardado con éxito');
         return redirect()->route('users.edit', $user->id)
-            ->with('status', 'Usuario guardado con éxito');
+        ->with('status', 'Usuario guardado con éxito');
+           
     }
     /**
      * Remove the specified resource from storage.

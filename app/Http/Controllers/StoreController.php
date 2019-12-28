@@ -17,7 +17,7 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
      //  $user = Auth::user(); 
         
@@ -29,8 +29,14 @@ class StoreController extends Controller
 
         $brand = brand::orderBy('id', 'DESC')
             ->where('id', auth()->user()->brand_id)->first();
-        $stores= $brand->Store;
-		return response()->json($brand, 200);
+        $stores= $brand->Store()->name($request->get('name'))->paginate();
+
+        //$users = User::name($request->get('name'))->orderBy('id', 'DESC')->paginate();
+
+
+        // return response()->json($brand, 200);
+        return view('stores.index', compact('stores', 'brand'));
+
     }
 
     /**
@@ -40,7 +46,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        //
+        return view('stores.create');
     }
 
     /**
@@ -55,20 +61,31 @@ class StoreController extends Controller
         $validator = Validator::make($request->all(), [ 
             'name' => 'required', 
             'address' => 'required', 
-            'brand_id' => 'required', 
            
         ]);
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $store = Store::create($request->all());
-        
-        return response()->json([
-            $store,
-            "message" => "El Local a sido creado correctamente.",
 
-            ], 200);
+        $brand = brand::orderBy('id', 'DESC')
+        ->where('id', auth()->user()->brand_id)->first();
+       
+        $store = new Store();
+        $store->name = $request->input('name');
+        $store->address = $request->input('address');
+        $store->brand_id = $brand;
+        $store->brand()->associate($brand)->save();
+        $store->save();
+        return redirect()->route('stores.create', $store->id)
+        ->with('status', 'Local guardado con éxito');
+        //$store = Store::create($request->all());
+        
+        // return response()->json([
+        //     $store,
+        //     "message" => "El Local a sido creado correctamente.",
+
+        //     ], 200);
     }
 
     /**
@@ -88,9 +105,10 @@ class StoreController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(brand $brand)
+    public function edit($id)
     {
-        //
+        $store = Store::find($id);
+        return view('stores.edit', compact('store'));
     }
 
     /**
@@ -100,26 +118,39 @@ class StoreController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Store $store)
+    public function update(Request $request, $id)
     {
         
 
-        $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'address' => 'required', 
+        // $validator = Validator::make($request->all(), [ 
+        //     'name' => 'required', 
+        //     'address' => 'required', 
             
            
+        // ]);
+        // if ($validator->fails()) { 
+        //     return response()->json(['error'=>$validator->errors()], 401);            
+        // }
+       
+       
+        $validateData = $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            
         ]);
-        if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
-        
+        $store = Store::find($id);
+
         $store->update($request->all());
-        return response()->json([
-            $store,
-            "message" => "La Empresa a sido actualizada correctamente.",
+
+        return redirect()->route('stores.edit', $store->id)
+        ->with('status', 'Encuesta guardada con éxito');
+
+        $store->update($request->all());
+        // return response()->json([
+        //     $store,
+        //     "message" => "La Empresa a sido actualizada correctamente.",
         
-        ], 200);
+        // ], 200);
     }
 
     /**
@@ -128,13 +159,16 @@ class StoreController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Store $store)
+    public function destroy($id)
     {
-        $store = $store->delete();
-        return response()->json([
+        $user = Store::find($id)->delete();
+        return back()->with('status', 'Eliminado correctamente');
+
+        // $store = $store->delete();
+        // return response()->json([
             
-            "message" => "El local a sido eliminado correctamente.",
+        //     "message" => "El local a sido eliminado correctamente.",
         
-        ], 200); 
+        // ], 200); 
     }
 }

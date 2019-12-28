@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'brand_id',
     ];
 
     /**
@@ -63,9 +63,13 @@ class User extends Authenticatable
        }
     }
 
-    public function Brand()
-     {
+    // public function Brand()
+    //  {
 
-        return $this->hasMany('App\Brand');
-     }
+    //     return $this->hasMany('App\Brand');
+    //  }
+
+     public function Brand(){
+        return $this->belongsTo('App\Brand');
+    }
 }

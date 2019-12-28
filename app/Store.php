@@ -20,4 +20,12 @@ class Store extends Model
 
         return $this->hasMany('App\Solidwaste');
      }
+
+
+     public function scopeName($query, $name){
+        if (trim($name) != ""){
+        // $query->where('name', "LIKE",  "%$name%");
+        $query->where(\DB::raw("CONCAT(name, ' ', address)"),  "LIKE", "%$name%" );
+        }
+     }
 }
