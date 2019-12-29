@@ -16,16 +16,20 @@ class SolidwasteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Request $request, $id)
     {
         $store = Store::find($id);
         
-        $solidwastes= $store->solidwaste;
-    
-         //return response()->json($solidwastes, 200);
+        $solidwastes= $store->solidwaste()->name($request->get('name'))->paginate();
 
-        return response()->json(
-            $solidwastes, 200);
+     
+    
+        return view('solidwastes.index', compact('store', 'solidwastes'));
+
+         //return response()->json($solidwastes, 200);
+//este
+        // return response()->json(
+        //     $solidwastes, 200);
         
     }
 
@@ -34,9 +38,12 @@ class SolidwasteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $store = Store::find($id);
+
+        return view('solidwastes.create', compact('store'));
+
     }
 
     /**
@@ -45,7 +52,7 @@ class SolidwasteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, store $store)
+    public function store(Request $request, Store $store)
     {
         
         // $validator = Validator::make($request->all(), [ 
@@ -58,28 +65,23 @@ class SolidwasteController extends Controller
         //     return response()->json(['error'=>$validator->errors()], 401);            
         // }
 
-        //$solidwaste = Solidwaste::create($request->all());
+        $solidwaste = Solidwaste::create($request->all());
         
-        $solidwaste->paper = $request->input('paper');
-        $solidwaste->paperboard = $request->input('paperboard');
-        $solidwaste->plastic = $request->input('plastic');
-        $solidwaste->pvc = $request->input('pvc');
-        $solidwaste->scrap = $request->input('scrap');
-        $solidwaste->glass = $request->input('glass');
-        $solidwaste->food = $request->input('food');
-        $solidwaste->ordinary = $request->input('ordinary');
-        $solidwaste->store_id =$store;
-    
-        $empleado->save();
+       
+        
+       
+        $solidwaste->store()->associate($store)->save();
+
+        // $solidwaste->save();
+            return $store;
 
 
 
+        // return response()->json([
+        //     $solidwaste,
+        //     "message" => "El Local a sido creado correctamente.",
 
-        return response()->json([
-            $solidwaste,
-            "message" => "El Local a sido creado correctamente.",
-
-            ], 200);
+        //     ], 200);
     }
 
     /**
@@ -99,9 +101,9 @@ class SolidwasteController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(brand $brand)
+    public function edit(Store $store)
     {
-        //
+        return $store;
     }
 
     /**
@@ -141,10 +143,12 @@ class SolidwasteController extends Controller
     public function destroy(Solidwaste $solidwaste)
     {
         $solidwaste = $solidwaste->delete();
-        return response()->json([
+        return back()->with('status', 'Eliminado correctamente');
+
+        // return response()->json([
             
-            "message" => "La planilla a sido eliminada correctamente.",
+        //     "message" => "La planilla a sido eliminada correctamente.",
         
-        ], 200); 
+        // ], 200); 
     }
 }

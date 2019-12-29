@@ -94,9 +94,11 @@ class StoreController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Store $store)
+    public function show($id)
     {
-        return response()->json($store, 200);
+        //return response()->json($store, 200);
+        $store = Store::find($id);
+        return view('stores.show', compact('store'));
     }
 
     /**

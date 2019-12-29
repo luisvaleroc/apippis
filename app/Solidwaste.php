@@ -14,4 +14,11 @@ class solidwaste extends Model
     {
         return $this->belongsTo('App\Store');
     }
+
+    public function scopeName($query, $name){
+        if (trim($name) != ""){
+        // $query->where('name', "LIKE",  "%$name%");
+        $query->where(\DB::raw("CONCAT(paper, ' ', paperboard)"),  "LIKE", "%$name%" );
+        }
+     }
 }
