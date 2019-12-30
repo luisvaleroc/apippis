@@ -8,7 +8,7 @@
 @endcan
 @can('solidwastes.edit')
 <td width="10px">
-    <a href="{{ route('solidwastes.edit', [$store->id, $solidwaste->îd]) }}" 
+    <a href="solidwastes/{{ $solidwaste->id}}/edit" 
     class="btn btn-sm btn-default">
         editar
     </a>
@@ -18,7 +18,7 @@
 <td width="10px">
     {!! Form::open(['route' => ['solidwastes.destroy', $solidwaste->id], 
     'method' => 'DELETE']) !!}
-        <button class="btn btn-sm btn-danger" Onclick="return confirm('Are you sure you want to delete this item?');" >
+        <button class="btn btn-sm btn-danger" Onclick="return confirm('¿Seguro desea eliminar este registro?');" >
             Eliminar
         </button>
     {!! Form::close() !!}

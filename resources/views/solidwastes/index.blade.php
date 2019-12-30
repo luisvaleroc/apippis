@@ -50,6 +50,7 @@
                                 <th>Vidrio</th>
                                 <th>Comida y fruta</th>
                                 <th>Ordinarios</th>
+                                <th>Creado</th>
 
                                 <th colspan="3">&nbsp;</th>
                             </tr>
@@ -66,6 +67,7 @@
                                 <td>{{ $solidwaste->glass }}</td>
                                 <td>{{ $solidwaste->food }}</td>
                                 <td>{{ $solidwaste->ordinary }}</td>
+                                <td>{{ $solidwaste->created_at }}</td>
                                 @include('solidwastes.partials.canlist')
                             </tr>
                             @endforeach
@@ -78,11 +80,5 @@
     </div>
 </div>
 
-<!-- 
 
-<script>
-        $(document).ready(function() {
-       $('#solidwastes').DataTable();
-   } );  
-       </script> -->
 @endsection

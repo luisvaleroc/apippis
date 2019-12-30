@@ -6,6 +6,8 @@ use App\Store;
 use App\Brand;
 use App\Solidwaste;
 use Validator;
+use Carbon\Carbon;
+
 
 use Illuminate\Http\Request;
 
@@ -23,7 +25,6 @@ class SolidwasteController extends Controller
         $solidwastes= $store->solidwaste()->name($request->get('name'))->paginate();
 
      
-    
         return view('solidwastes.index', compact('store', 'solidwastes'));
 
          //return response()->json($solidwastes, 200);
@@ -42,6 +43,7 @@ class SolidwasteController extends Controller
     {
         $store = Store::find($id);
 
+        
         return view('solidwastes.create', compact('store'));
 
     }
@@ -73,7 +75,10 @@ class SolidwasteController extends Controller
         $solidwaste->store()->associate($store)->save();
 
         // $solidwaste->save();
-            return $store;
+        return redirect()->route('solidwastes.create', $store->id)
+        ->with('status', 'Guardado con éxito');
+
+
 
 
 
@@ -101,9 +106,10 @@ class SolidwasteController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Store $store)
+    public function edit( Store $store,  solidwaste $solidwaste)
     {
-        return $store;
+        //$store = Solidwaste::find($id);
+        return view('solidwastes.edit', compact('solidwaste', 'store'));
     }
 
     /**
@@ -113,25 +119,36 @@ class SolidwasteController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Solidwaste $solidwaste)
+    public function update(Request $request, $id)
     {
         
 
-        $validator = Validator::make($request->all(), [ 
-            'pvc' => 'required', 
+        // $validator = Validator::make($request->all(), [ 
+        //     'pvc' => 'required', 
             
            
-        ]);
-        if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
+        // ]);
+        // if ($validator->fails()) { 
+        //     return response()->json(['error'=>$validator->errors()], 401);            
+        // // }
         
+        // $solidwaste->update($request->all());
+        // return response()->json([
+        //     $solidwaste,
+        //     "message" => "La Empresa a sido actualizada correctamente.",
+        
+        // ], 200);
+
+        $solidwaste = Solidwaste::find($id);
+
+        $store = $solidwaste->store;
+
         $solidwaste->update($request->all());
-        return response()->json([
-            $solidwaste,
-            "message" => "La Empresa a sido actualizada correctamente.",
-        
-        ], 200);
+
+        return redirect()->route('solidwastes.edit', [$store->id, $solidwaste->id] )
+        ->with('status', 'Encuesta guardada con éxito');
+
+
     }
 
     /**

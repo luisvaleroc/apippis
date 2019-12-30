@@ -11,7 +11,7 @@
                                 <ul class="nav nav-pills">
                                   <li class="nav-item">
                                     @can('stores.create')
-                                    <a href="{{ route('stores.create') }}" 
+                                    <a href="{{ route('solidwastes.create', $store->id)}}" 
                                     class="btn btn-sm btn-primary pull-right">
                                         Crear
                                     </a>
@@ -19,7 +19,7 @@
                                   </li>
                                   <li class="nav-item">
                                         @can('stores.create')
-                                        <a href="{{ route('stores.index') }}" 
+                                        <a href="{{ route('solidwastes.index', $store->id)}}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Ver
                                         </a>
@@ -34,10 +34,10 @@
                  
                  
                 <div class="panel-body">                    
-                    {!! Form::model($store, ['route' => ['stores.update', $store->id],
+                    {!! Form::model($solidwaste, ['route' => ['solidwastes.update', $solidwaste->id],
                     'method' => 'PUT']) !!}
 
-                        @include('stores.partials.form')
+                        @include('solidwastes.partials.form')
                         
                     {!! Form::close() !!}
                 </div>
