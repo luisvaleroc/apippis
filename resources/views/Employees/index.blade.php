@@ -10,11 +10,11 @@
                 </div>
                
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                    <a class="navbar-solidwaste" href="#">Locales</a>
+                    <a class="navbar-employee" href="#">Locales</a>
                     <ul class="nav nav-pills">
                       <li class="nav-item">
-                        @can('solidwastes.create')
-                        <a href="{{ route('solidwastes.create', $store->id) }}" 
+                        @can('employees.create')
+                        <a href="{{ route('employees.create', $store->id) }}" 
                         class="btn btn-sm btn-primary pull-right">
                             Crear
                         </a>
@@ -23,7 +23,7 @@
                       
                     </ul>
                     
-                    {{ Form::open(['route' => array('solidwastes.index', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'solidwaste' => 'search']) }}
+                    {{ Form::open(['route' => array('employees.index', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'employee' => 'search']) }}
                     <div class="form-group mx-sm-3 mb-2">
                             {{ Form::text('name', null, ['placeholder' => 'Buscar','class' => 'form-control', 'id' => 'name']) }}
 
@@ -38,42 +38,32 @@
         
                   
                 <div class="panel-body">
-                    <table id="solidwastes" class="table table-striped table-hover">
+                    <table id="employees" class="table table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th width="10px">ID</th>
-                                <th>Papel</th>
-                                <th>Carton</th>
-                                <th>Plastico</th>
-                                <th>PVC</th>
-                                <th>Chatarra</th>
-                                <th>Vidrio</th>
-                                <th>Comida y fruta</th>
-                                <th>Ordinarios</th>
+                                <th> Nombre</th>
+                                <th>Rut</th>
+                              
                                 <th>Creado</th>
 
                                 <th colspan="3">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($solidwastes as $solidwaste)
+                            @foreach($employees as $employee)
                             <tr>
-                                <td>{{ $solidwaste->id }}</td>
-                                <td>{{ $solidwaste->paper }}</td>
-                                <td>{{ $solidwaste->paperboard }}</td>
-                                <td>{{ $solidwaste->plastic }}</td>
-                                <td>{{ $solidwaste->pvc }}</td>
-                                <td>{{ $solidwaste->scrap }}</td>
-                                <td>{{ $solidwaste->glass }}</td>
-                                <td>{{ $solidwaste->food }}</td>
-                                <td>{{ $solidwaste->ordinary }}</td>
-                                <td idth="30px">{{ $solidwaste->created_at->format('d-m-Y') }}</td>
-                                @include('solidwastes.partials.canlist')
+                                <td>{{ $employee->id }}</td>
+                                <td>{{ $employee->name }}</td>
+                                <td>{{ $employee->rut }}</td>
+                            
+                                <td idth="30px">{{ $employee->created_at->format('d-m-Y') }}</td>
+                                @include('employees.partials.canlist')
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $solidwastes->render() }} 
+                    {{ $employees->render() }} 
                 </div>
             </div>
         </div>

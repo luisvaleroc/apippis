@@ -25,14 +25,6 @@
                                     </a>
                                     @endcan
                                   </li>
-                                  <li class="nav-item">
-                                        @can('stores.index')
-                                        <a href="{{ route('employees.index', $store->id) }}" 
-                                        class="btn btn-sm btn-success pull-right">
-                                            Empleados
-                                        </a>
-                                        @endcan
-                                      </li>
                               
                             </ul>
                     </nav>
@@ -60,20 +52,7 @@
         ver
     </a>
 </td>
-
                             </tr>
-
-                            <tr>
-                               <td>Salud e Higiene</td>
-                               <td width="10px">
-    <a href="{{ route('cleanings.index', $store->id) }}" 
-    class="btn btn-sm btn-default">
-        ver
-    </a>
-</td>
-
-                            </tr>
-
                             
                         </tbody>
                     </table>

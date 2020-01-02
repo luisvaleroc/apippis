@@ -21,6 +21,17 @@ class Store extends Model
         return $this->hasMany('App\Solidwaste');
      }
 
+     public function Employee()
+     {
+
+        return $this->hasMany('App\Employee');
+     }
+
+     public function Cleaning()
+     {
+
+        return $this->hasMany('App\Cleaning');
+     }
 
      public function scopeName($query, $name){
         if (trim($name) != ""){

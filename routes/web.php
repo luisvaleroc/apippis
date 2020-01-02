@@ -108,4 +108,47 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 	
 
 
+
+		//Employees
+		Route::post('stores/{store}/employees/store', 'EmployeeController@store')->name('employees.store')
+	->middleware('permission:employees.create');
+
+
+	Route::get('stores/{store}/employees', 'EmployeeController@index')->name('employees.index')
+		->middleware('permission:employees.index');
+	Route::get('stores/{store}/employees/create', 'EmployeeController@create')->name('employees.create')
+		->middleware('permission:employees.create');
+	Route::put('employees/{employee}', 'EmployeeController@update')->name('employees.update')
+		->middleware('permission:employees.edit');
+	Route::get('employees/{brand}', 'EmployeeController@show')->name('employees.show')
+		->middleware('permission:employees.show');
+	Route::delete('employees/{employee}', 'EmployeeController@destroy')->name('employees.destroy')
+		->middleware('permission:employees.destroy');
+	Route::get('stores/{store}/employees/{employee}/edit', 'EmployeeController@edit')->name('employees.edit')
+		->middleware('permission:brands.edit');
+
+
+
+
+	//cleanings
+		Route::post('stores/{store}/cleanings/store', 'CleaningController@store')->name('cleanings.store')
+	->middleware('permission:cleanings.create');
+
+
+	Route::get('stores/{store}/cleanings', 'CleaningController@index')->name('cleanings.index')
+		->middleware('permission:cleanings.index');
+	Route::get('stores/{store}/cleanings/create', 'CleaningController@create')->name('cleanings.create')
+		->middleware('permission:cleanings.create');
+	Route::put('cleanings/{cleaning}', 'CleaningController@update')->name('cleanings.update')
+		->middleware('permission:cleanings.edit');
+	Route::get('cleanings/{cleaning}', 'CleaningController@show')->name('cleanings.show')
+		->middleware('permission:cleanings.show');
+	Route::delete('cleanings/{employee}', 'CleaningController@destroy')->name('cleanings.destroy')
+		->middleware('permission:cleanings.destroy');
+	Route::get('stores/{store}/cleanings/{employee}/edit', 'CleaningController@edit')->name('cleanings.edit')
+		->middleware('permission:cleanings.edit');
+	
+		
+
+
 });
