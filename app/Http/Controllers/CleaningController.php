@@ -38,6 +38,7 @@ class CleaningController extends Controller
     {
         
         $store = Store::find($id);
+       
 
         
         return view('cleanings.create', compact('store'));
@@ -51,6 +52,22 @@ class CleaningController extends Controller
      */
     public function store(Request $request, Store $store)
     {      
+
+
+        $validateData = $request->validate([
+            'mask' => 'required',
+            'wound' => 'required',
+            'makeup' => 'required',
+            'jewelry' => 'required',
+            'ear' => 'required',
+            'shoe' => 'required',
+            'hair' => 'required',
+            'nail' => 'required',
+            'uniform' => 'required',
+            'rut' => 'required|exists:Employees',
+            
+            
+        ]);
         $rut = $request->input('rut');
 
         $employee = Employee::where('rut', $rut)->first();
@@ -65,6 +82,7 @@ class CleaningController extends Controller
         $cleaning->hair = $request->input('hair');
         $cleaning->nail = $request->input('nail');
         $cleaning->uniform = $request->input('uniform');
+        $cleaning->observation = $request->input('observation');
         $cleaning->employee_id = $employee->id;
         $cleaning->store_id = $store->id;
 
@@ -101,7 +119,7 @@ class CleaningController extends Controller
     public function edit(Store $store, $id)
     {
         
-        $cleaning = cleaning::find($id);
+        $cleaning = Cleaning::find($id);
         return view('cleanings.edit', compact('cleaning', 'store'));
     }
 
@@ -114,7 +132,15 @@ class CleaningController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cleaning = Cleaning::find($id);
+
+        $store = $cleaning->store;
+
+        $cleaning->update($request->all());
+
+        return redirect()->route('cleanings.edit', [$store->id, $cleaning->id] )
+        ->with('status', 'Guardado con éxito');
+
     }
 
     /**
@@ -123,8 +149,10 @@ class CleaningController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy( $id)
+    {   
+        $cleaning = Cleaning::find($id);
+        $cleaning = $cleaning->delete();
+        return back()->with('status', 'Eliminado correctamente');
     }
 }

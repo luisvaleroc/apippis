@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cleaning extends Model
 {
     protected $fillable = [
-        'mask', 'wound', 'makeup', 'jewelry', 'ear', 'shoe', 'hair', 'nail', 'uniform', 'employee_id', 'store_id',
+        'mask', 'wound', 'makeup', 'jewelry', 'ear', 'shoe', 'hair', 'nail', 'uniform', 'employee_id', 'store_id', 'observation',
     ];
 
 
@@ -28,7 +28,7 @@ class Cleaning extends Model
     public function scopeName($query, $name){
         if (trim($name) != ""){
         // $query->where('name', "LIKE",  "%$name%");
-        $query->where(\DB::raw("CONCAT(employee_id, ' ', shoe)"),  "LIKE", "%$name%" );
+        $query->where(\DB::raw("CONCAT(name, ' ', rut)"),  "LIKE", "%$name%" );
         }
      }
 
