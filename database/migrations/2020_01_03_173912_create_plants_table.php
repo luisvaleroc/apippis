@@ -22,8 +22,7 @@ class CreatePlantsTable extends Migration
             $table->string('wall');
             $table->string('dump');
             $table->string('action');
-            $table->unsignedBigInteger('store_id')->nullable()->index();
-            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            
           
 
 

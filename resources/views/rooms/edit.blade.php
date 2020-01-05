@@ -7,19 +7,19 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                         <nav id="navbar-central" class="navbar navbar-light bg-light">
-                                <a class="navbar-employee" href="#">Empresas</a>
+                                <a class="navbar-store" href="#">Empresas</a>
                                 <ul class="nav nav-pills">
                                   <li class="nav-item">
-                                    @can('employees.create')
-                                    <a href="{{ route('employees.create', $employee->id)}}" 
+                                    @can('rooms.create')
+                                    <a href="{{ route('rooms.create', $store->id)}}" 
                                     class="btn btn-sm btn-primary pull-right">
                                         Crear
                                     </a>
                                     @endcan
                                   </li>
                                   <li class="nav-item">
-                                        @can('employees.create')
-                                        <a href="{{ route('employees.index', $employee->id)}}" 
+                                        @can('rooms.create')
+                                        <a href="{{ route('rooms.index', $store->id)}}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Ver
                                         </a>
@@ -34,10 +34,10 @@
                  
                  
                 <div class="panel-body">                    
-                    {!! Form::model($employee, ['route' => ['employees.update', $employee->id],
+                    {!! Form::model($room, ['route' => ['rooms.update', $room->id],
                     'method' => 'PUT']) !!}
 
-                        @include('employees.partials.form')
+                        @include('rooms.partials.form')
                         
                     {!! Form::close() !!}
                 </div>

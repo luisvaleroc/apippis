@@ -147,6 +147,22 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 		->middleware('permission:cleanings.destroy');
 	Route::get('stores/{store}/cleanings/{employee}/edit', 'CleaningController@edit')->name('cleanings.edit')
 		->middleware('permission:cleanings.edit');
+
+		//rooms
+		Route::post('stores/{store}/rooms/store', 'RoomController@store')->name('rooms.store')
+	->middleware('permission:rooms.create');
+	Route::get('stores/{store}/rooms', 'RoomController@index')->name('rooms.index')
+		->middleware('permission:rooms.index');
+	Route::get('stores/{store}/rooms/create', 'RoomController@create')->name('rooms.create')
+		->middleware('permission:rooms.create');
+	Route::put('rooms/{cleaning}', 'RoomController@update')->name('rooms.update')
+		->middleware('permission:rooms.edit');
+	Route::get('rooms/{cleaning}', 'RoomController@show')->name('rooms.show')
+		->middleware('permission:rooms.show');
+	Route::delete('rooms/{employee}', 'RoomController@destroy')->name('rooms.destroy')
+		->middleware('permission:rooms.destroy');
+	Route::get('stores/{store}/rooms/{employee}/edit', 'RoomController@edit')->name('rooms.edit')
+		->middleware('permission:rooms.edit');
 	
 		
 

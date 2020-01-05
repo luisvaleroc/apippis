@@ -21,6 +21,12 @@ class Store extends Model
         return $this->hasMany('App\Solidwaste');
      }
 
+     public function Room()
+     {
+
+        return $this->hasMany('App\Room');
+     }
+
      public function Employee()
      {
 
