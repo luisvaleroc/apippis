@@ -10,11 +10,11 @@
                 </div>
                
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                    <a class="navbar-cleaning" href="#">Salud e hiene personal</a>
+                    <a class="navbar-plant" href="#">Limpieza y sanitización</a>
                     <ul class="nav nav-pills">
                       <li class="nav-item">
-                        @can('cleanings.create')
-                        <a href="{{ route('cleanings.create', $store->id) }}" 
+                        @can('plants.create')
+                        <a href="{{ route('plants.create', $store->id) }}" 
                         class="btn btn-sm btn-primary pull-right">
                             Crear
                         </a>
@@ -23,7 +23,7 @@
                       
                     </ul>
                     
-                    {{ Form::open(['route' => array('cleanings.index', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'cleaning' => 'search']) }}
+                    {{ Form::open(['route' => array('plants.index', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'plant' => 'search']) }}
                     <div class="form-group mx-sm-3 mb-2">
                             {{ Form::text('name', null, ['placeholder' => 'Buscar','class' => 'form-control', 'id' => 'name']) }}
 
@@ -38,53 +38,48 @@
         
                   
                 <div class="panel-body">
-                    <table id="cleanings" class="table table-striped table-hover">
+                    <table id="plants" class="table table-striped table-hover">
                         <thead class="">
                             <tr>
                                 <th width="10px">ID</th>
-                                <th> Nombre</th>
-                                <th>Rut</th>
-                                <th>Nariz</th>
-                                <th>Heridas</th>
-                                <th>Maquillaje</th>
-                                <th>Joyas</th>
-                                <th>Orejas</th>
-                                <th>Zapatos</th>
-                                <th>Pelo</th>
-                                <th>Uñas</th>
-                                <th>Uniforme</th>      
-                                <th>Observacón</th>                          
+                                <th> Equipo 1</th>
+                                <th>Equipo 2</th>
+                                <th>Equipo 3</th>
+                                <th>Pisos</th>
+                                <th>Paredes</th>
+                                <th>Basurero</th>
+                                <th>Acción correctiva</th>
                                 <th>Creado</th>
+                              
 
                                 <th colspan="3">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($cleanings as $cleaning)
+                            @foreach($plants as $plant)
                             <tr>
-                                <td>{{ $cleaning->id }}</td>
-                                <td>{{ $cleaning->employee->name }}</td>
-                                <td>{{ $cleaning->employee->rut }}</td>
-                                <td>{{ $cleaning->mask }}</td>
-                                <td>{{ $cleaning->wound }}</td>
-                                <td>{{ $cleaning->makeup }}</td>
-                                <td>{{ $cleaning->jewelry }}</td>
-                                <td>{{ $cleaning->ear }}</td>
-                                <td>{{ $cleaning->shoe }}</td>
-                                <td>{{ $cleaning->hair }}</td>
-                                <td>{{ $cleaning->nail }}</td>
-                                <td>{{ $cleaning->uniform }}</td>
+                                <td>{{ $plant->id }}</td>
+                                <td>{{ $plant->equip1 }}</td>
+                                <td>{{ $plant->equip2 }}</td>
+                                <td>{{ $plant->equip3 }}</td>
+                                <td>{{ $plant->floor }}</td>
+                                <td>{{ $plant->wall }}</td>
+                                <td>{{ $plant->dump }}</td>
+                                <td>{{ $plant->action }}</td>
                                
-                                <td>{{ $cleaning->observation }}</td>
+                                <td idth="30px">{{ 
+                                    date('d-m-Y', strtotime($plant->created_at))
                                 
+                                }}</td>
+                             
                             
-                                <td idth="30px">{{ $cleaning->created_at->format('d-m-Y') }}</td>
-                                @include('cleanings.partials.canlist')
+                                
+                                @include('plants.partials.canlist')
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $cleanings->render() }} 
+                    {{ $plants->render() }} 
                 </div>
             </div>
         </div>

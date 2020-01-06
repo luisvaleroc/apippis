@@ -164,7 +164,24 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 	Route::get('stores/{store}/rooms/{employee}/edit', 'RoomController@edit')->name('rooms.edit')
 		->middleware('permission:rooms.edit');
 	
-		
+
+
+		//plants
+		Route::post('stores/{store}/plants/store', 'PlantController@store')->name('plants.store')
+	->middleware('permission:plants.create');
+	Route::get('stores/{store}/plants', 'PlantController@index')->name('plants.index')
+		->middleware('permission:plants.index');
+	Route::get('stores/{store}/plants/create', 'PlantController@create')->name('plants.create')
+		->middleware('permission:plants.create');
+	Route::put('plants/{plant}', 'PlantController@update')->name('plants.update')
+		->middleware('permission:plants.edit');
+	Route::get('plants/{plant}', 'PlantController@show')->name('plants.show')
+		->middleware('permission:plants.show');
+	Route::delete('plants/{plant}', 'PlantController@destroy')->name('plants.destroy')
+		->middleware('permission:plants.destroy');
+	Route::get('stores/{store}/plants/{plant}/edit', 'PlantController@edit')->name('plants.edit')
+		->middleware('permission:plants.edit');
+	
 
 
 });

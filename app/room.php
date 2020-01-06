@@ -13,6 +13,14 @@ class room extends Model
     public function Store()
     {
         return $this->belongsTo('App\Store');
+        
+    }
+
+    public function Plant()
+    {
+
+       return $this->hasMany('App\Plant');
+       //return $this->belongsTo('App\Plant');
     }
 
     public function scopeName($query, $name){

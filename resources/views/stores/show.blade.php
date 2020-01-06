@@ -26,14 +26,21 @@
                                     @endcan
                                   </li>
                                   <li class="nav-item">
-                                        @can('stores.index')
+                                        @can('employees.index')
                                         <a href="{{ route('employees.index', $store->id) }}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Empleados
                                         </a>
                                         @endcan
                                       </li>
-                              
+                                      <li class="nav-item">
+                                        @can('rooms.index')
+                                        <a href="{{ route('rooms.index', $store->id) }}" 
+                                        class="btn btn-sm btn-success pull-right">
+                                            Salas
+                                        </a>
+                                        @endcan
+                                      </li>
                             </ul>
                     </nav>
 
@@ -45,7 +52,7 @@
                 </div>
                 <div class="panel-body">
                     <table id="stores" class="table table-striped table-hover">
-                        <thead class="thead-dark">
+                        <thead class="">
                             <tr>
                                 <th width="500px">Planilla</th>
                                 <th>Acciones</th>
@@ -71,6 +78,17 @@
         ver
     </a>
 </td>
+
+<tr>
+                               <td>Limpieza y sanitización</td>
+                               <td width="10px">
+    <a href="{{ route('plants.index', $store->id) }}" 
+    class="btn btn-sm btn-default">
+        ver
+    </a>
+</td>
+
+                            </tr>
 
                             </tr>
 

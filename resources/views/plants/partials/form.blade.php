@@ -1,74 +1,68 @@
-
-<h3>Mascarilla cubre la nariz</h3>
+<h3>Equipo 1</h3>
 <div class="form-group">
- 	<label>{{ Form::radio('mask', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('mask', 'X') }} No Cumple</label>
-</div>
-<h3>Ausencia de heridas</h3>
-<div class="form-group">
- 	<label>{{ Form::radio('wound', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('wound', 'X') }} No Cumple</label>
+ 	<label>{{ Form::radio('equip1', 'V') }} Cumple</label>
+ 	<label>{{ Form::radio('equip1', 'X') }} No Cumple</label>
 </div>
 
-<h3>Susencia de maquillaje</h3>
+<h3>Equipo 2</h3>
 <div class="form-group">
- 	<label>{{ Form::radio('makeup', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('makeup', 'X') }} No Cumple</label>
+ 	<label>{{ Form::radio('equip2', 'V') }} Cumple</label>
+ 	<label>{{ Form::radio('equip2', 'X') }} No Cumple</label>
 </div>
 
 
-
-
-<h3>Ausencia de joyas</h3>
+<h3>Equipo 3</h3>
 <div class="form-group">
- 	<label>{{ Form::radio('jewelry', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('jewelry', 'X') }} No Cumple</label>
+ 	<label>{{ Form::radio('equip3', 'V') }} Cumple</label>
+ 	<label>{{ Form::radio('equip3', 'X') }} No Cumple</label>
 </div>
 
 
-<h3>Cofia cubre las orejas</h3>
+<h3>Pisos</h3>
 <div class="form-group">
- 	<label>{{ Form::radio('ear', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('ear', 'X') }} No Cumple</label>
+ 	<label>{{ Form::radio('floor', 'V') }} Cumple</label>
+ 	<label>{{ Form::radio('floor', 'X') }} No Cumple</label>
 </div>
 
-<h3>Zapatos Limpios</h3>
+<h3> Paredes</h3>
 <div class="form-group">
- 	<label>{{ Form::radio('shoe', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('shoe', 'X') }} No Cumple</label>
-</div>
-
-
-<h3>Pelo corto / tomado</h3>
-<div class="form-group">
- 	<label>{{ Form::radio('hair', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('hair', 'X') }} No Cumple</label>
-</div>
-<h3>Uñas cortas</h3>
-<div class="form-group">
- 	<label>{{ Form::radio('nail', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('nail', 'X') }} No Cumple</label>
+ 	<label>{{ Form::radio('wall', 'V') }} Cumple</label>
+ 	<label>{{ Form::radio('wall', 'X') }} No Cumple</label>
 </div>
 
 
-<h3>Uniforme completo y limpio</h3>
+<h3>Basurero</h3>
 <div class="form-group">
- 	<label>{{ Form::radio('uniform', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('uniform', 'X') }} No Cumple</label>
+ 	<label>{{ Form::radio('dump', 'V') }} Cumple</label>
+ 	<label>{{ Form::radio('dump', 'X') }} No Cumple</label>
 </div>
 
-
-@if(!isset($cleaning) )
+<h3>Action Correctiva</h3>
 <div class="form-group">
-	{{ Form::label('rut', 'Rut empleado') }}
-	{{ Form::text('rut', null, ['class' => 'form-control', 'id' => 'rut']) }}
+ 	<label>{{ Form::radio('action', 'V') }} Cumple</label>
+ 	<label>{{ Form::radio('action', 'X') }} No Cumple</label>
 </div>
-@endif
 
+<h3>Equipo 1</h3>
 <div class="form-group">
-	{{ Form::label('observation', 'Observación') }}
-	{{ Form::text('observation', null, ['class' => 'form-control', 'id' => 'observation']) }}
+ 	<label>{{ Form::radio('equip1', 'V') }} Cumple</label>
+ 	<label>{{ Form::radio('equip1', 'X') }} No Cumple</label>
 </div>
+
+<h3>Equipo 1</h3>
+<div class="form-group">
+	<select name="room_id" id="room_id">
+	@if(!isset($plant))
+	
+	<option value=" ">Elija la empresa </option>
+	@else
+	<option value="{{$plant->room_id}}">{{ $plant->room->name}}</option> 
+	@endif
+		@foreach($rooms as $room)
+		<option value='{{$room->id}}'>{{ $room->name}}</option> 
+		@endforeach
+    </select>
+	</div>
 
 <div class="form-group">
 	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}

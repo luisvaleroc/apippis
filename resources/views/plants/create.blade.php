@@ -12,7 +12,7 @@
                                
                                   <li class="nav-item">
                                         @can('stores.index')
-                                        <a href="{{ route('cleanings.index', $store->id) }}" 
+                                        <a href="{{ route('plants.index', $store->id) }}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Ver
                                         </a>
@@ -27,9 +27,9 @@
 
                 
                 <div class="panel-body">                    
-                    {{ Form::open(['route' => ['cleanings.store', $store->id]]) }}
+                    {{ Form::open(['route' => ['plants.store', $store->id]]) }}
 
-                        @include('cleanings.partials.form')
+                        @include('plants.partials.form')
                         
                     {{ Form::close() }}
                 </div>

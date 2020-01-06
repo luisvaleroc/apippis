@@ -1,22 +1,22 @@
-@can('cleanings.show')
+@can('plants.show')
 <td width="10px">
-    <a href="{{ route('cleanings.show', $cleaning->id) }}" 
+    <a href="{{ route('plants.show', $plant->id) }}" 
     class="btn btn-sm btn-default">
         ver
     </a>
 </td>
 @endcan
-@can('cleanings.edit')
+@can('plants.edit')
 <td width="10px">
-    <a href="cleanings/{{ $cleaning->id}}/edit" 
+    <a href="plants/{{ $plant->id}}/edit" 
     class="btn btn-sm btn-default">
         editar
     </a>
 </td>  
 @endcan
-@can('cleanings.destroy')
+@can('plants.destroy')
 <td width="10px">
-    {!! Form::open(['route' => ['cleanings.destroy', $cleaning->id], 
+    {!! Form::open(['route' => ['plants.destroy', $plant->id], 
     'method' => 'DELETE']) !!}
         <button class="btn btn-sm btn-danger" Onclick="return confirm('¿Seguro desea eliminar este registro?');" >
             Eliminar
