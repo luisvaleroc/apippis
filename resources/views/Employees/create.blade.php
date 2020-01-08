@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                                <a class="navbar-store" href="#">Desechos solidos</a>
+                                <a class="navbar-store" href="#">Empleados</a>
                                 <ul class="nav nav-pills">
                                
                                   <li class="nav-item">

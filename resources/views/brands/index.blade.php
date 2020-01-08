@@ -39,7 +39,7 @@
                   
                 <div class="panel-body">
                     <table id="brands" class="table table-striped table-hover">
-                        <thead class="thead-dark">
+                        <thead class="">
                             <tr>
                                 <th width="10px">ID</th>
                                 <th>Nombre</th>

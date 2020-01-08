@@ -10,7 +10,7 @@
                 </div>
                
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                    <a class="navbar-employee" href="#">Locales</a>
+                    <a class="navbar-employee" href="#">Empleados</a>
                     <ul class="nav nav-pills">
                       <li class="nav-item">
                         @can('employees.create')
@@ -39,7 +39,7 @@
                   
                 <div class="panel-body">
                     <table id="employees" class="table table-striped table-hover">
-                        <thead class="thead-dark">
+                        <thead class="">
                             <tr>
                                 <th width="10px">ID</th>
                                 <th> Nombre</th>

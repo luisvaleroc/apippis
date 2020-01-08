@@ -42,5 +42,11 @@
 <hr>
 
 <div class="form-group">
+	{{ Form::label('observation', 'Observación') }}
+	{{ Form::text('observation', null, ['class' => 'form-control', 'id' => 'observation']) }}
+</div>
+
+
+<div class="form-group">
 	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
 </div>

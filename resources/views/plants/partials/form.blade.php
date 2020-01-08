@@ -37,24 +37,17 @@
  	<label>{{ Form::radio('dump', 'X') }} No Cumple</label>
 </div>
 
-<h3>Action Correctiva</h3>
 <div class="form-group">
- 	<label>{{ Form::radio('action', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('action', 'X') }} No Cumple</label>
+	{{ Form::label('action', 'Acción correctiva') }}
+	{{ Form::text('action', null, ['class' => 'form-control', 'id' => 'action']) }}
 </div>
 
-<h3>Equipo 1</h3>
-<div class="form-group">
- 	<label>{{ Form::radio('equip1', 'V') }} Cumple</label>
- 	<label>{{ Form::radio('equip1', 'X') }} No Cumple</label>
-</div>
-
-<h3>Equipo 1</h3>
+<h3>Sala</h3>
 <div class="form-group">
 	<select name="room_id" id="room_id">
 	@if(!isset($plant))
 	
-	<option value=" ">Elija la empresa </option>
+	<option value=" ">Elija la sala </option>
 	@else
 	<option value="{{$plant->room_id}}">{{ $plant->room->name}}</option> 
 	@endif
@@ -63,6 +56,11 @@
 		@endforeach
     </select>
 	</div>
+
+	<div class="form-group">
+	{{ Form::label('observation', 'Observación') }}
+	{{ Form::text('observation', null, ['class' => 'form-control', 'id' => 'observation']) }}
+</div>
 
 <div class="form-group">
 	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}

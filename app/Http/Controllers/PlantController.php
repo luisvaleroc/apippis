@@ -34,7 +34,7 @@ class PlantController extends Controller
         $plants = DB::table('stores')
             ->join('rooms', 'stores.id', '=', 'rooms.store_id')
             ->join('plants', 'rooms.id', '=', 'plants.room_id')
-            ->select('plants.id', 'plants.equip1', 'plants.equip2', 'plants.equip3', 'plants.floor', 'plants.wall', 'plants.dump', 'plants.action', 'plants.created_at as created_at')
+            ->select('plants.id', 'plants.observation', 'plants.equip1', 'plants.equip2', 'plants.equip3', 'plants.floor', 'plants.wall', 'plants.dump', 'plants.action', 'plants.created_at as created_at')
             ->where('stores.id', $store->id)
             ->orderBy('stores.id', 'desc')
             ->paginate();
@@ -89,7 +89,7 @@ class PlantController extends Controller
        
 
         // $solidwaste->save();
-        return redirect()->route('solidwastes.create', $store->id)
+        return redirect()->route('plants.create', $store->id)
         ->with('status', 'Guardado con éxito');
 
     }

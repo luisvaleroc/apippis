@@ -10,7 +10,7 @@
                 </div>
                
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                    <a class="navbar-solidwaste" href="#">Locales</a>
+                    <a class="navbar-solidwaste" href="#">Desechos solidos</a>
                     <ul class="nav nav-pills">
                       <li class="nav-item">
                         @can('solidwastes.create')
@@ -39,7 +39,7 @@
                   
                 <div class="panel-body">
                     <table id="solidwastes" class="table table-striped table-hover">
-                        <thead class="thead-dark">
+                        <thead class="">
                             <tr>
                                 <th width="10px">ID</th>
                                 <th>Papel</th>
@@ -50,6 +50,7 @@
                                 <th>Vidrio</th>
                                 <th>Comida y fruta</th>
                                 <th>Ordinarios</th>
+                                <th>Observación</th>
                                 <th>Creado</th>
 
                                 <th colspan="3">&nbsp;</th>
@@ -67,6 +68,7 @@
                                 <td>{{ $solidwaste->glass }}</td>
                                 <td>{{ $solidwaste->food }}</td>
                                 <td>{{ $solidwaste->ordinary }}</td>
+                                <td>{{ $solidwaste->observation }}</td>
                                 <td idth="30px">{{ $solidwaste->created_at->format('d-m-Y') }}</td>
                                 @include('solidwastes.partials.canlist')
                             </tr>

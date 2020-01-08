@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                         <nav id="navbar-central" class="navbar navbar-light bg-light">
-                                <a class="navbar-employee" href="#">Empresas</a>
+                                <a class="navbar-employee" href="#">Empleados</a>
                                 <ul class="nav nav-pills">
                                   <li class="nav-item">
                                     @can('employees.create')

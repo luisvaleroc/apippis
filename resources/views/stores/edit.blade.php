@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                         <nav id="navbar-central" class="navbar navbar-light bg-light">
-                                <a class="navbar-store" href="#">Empresas</a>
+                                <a class="navbar-store" href="#">Locales</a>
                                 <ul class="nav nav-pills">
                                   <li class="nav-item">
                                     @can('stores.create')

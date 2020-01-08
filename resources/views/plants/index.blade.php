@@ -49,6 +49,7 @@
                                 <th>Paredes</th>
                                 <th>Basurero</th>
                                 <th>Acción correctiva</th>
+                                <th>Observación</th>
                                 <th>Creado</th>
                               
 
@@ -66,6 +67,7 @@
                                 <td>{{ $plant->wall }}</td>
                                 <td>{{ $plant->dump }}</td>
                                 <td>{{ $plant->action }}</td>
+                                <td>{{ $plant->observation }}</td>
                                
                                 <td idth="30px">{{ 
                                     date('d-m-Y', strtotime($plant->created_at))
