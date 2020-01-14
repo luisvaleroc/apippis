@@ -168,4 +168,22 @@ class SolidwasteController extends Controller
         
         // ], 200); 
     }
+
+
+
+
+    public function datasolidwastes()
+    {
+         $store = Store::find($id);
+        
+         $solidwastes= $store->solidwaste();
+
+         return datatables(Sokidwaste::query())->toJson();
+
+         //return response()->json($solidwastes, 200);
+//este
+        // return response()->json(
+        //     $solidwastes, 200);
+        
+    }
 }

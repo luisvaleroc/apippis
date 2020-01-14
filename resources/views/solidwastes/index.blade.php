@@ -92,26 +92,7 @@
                                 <th>Acciones</th>
             </tr>
         </thead>
-        <tbody>
-        @foreach($solidwastes as $solidwaste)
-                            <tr>
-                                <td>{{ $solidwaste->id }}</td>
-                                <td>{{ $solidwaste->paper }}</td>
-                                <td>{{ $solidwaste->paperboard }}</td>
-                                <td>{{ $solidwaste->plastic }}</td>
-                                <td>{{ $solidwaste->pvc }}</td>
-                                <td>{{ $solidwaste->scrap }}</td>
-                                <td>{{ $solidwaste->glass }}</td>
-                                <td>{{ $solidwaste->food }}</td>
-                                <td>{{ $solidwaste->ordinary }}</td>
-                                <td>{{ $solidwaste->observation }}</td>
-                                <td >{{ $solidwaste->created_at->format('d-m-Y') }}</td>
-                                @include('solidwastes.partials.canlist')
-
-                            </tr>
-                            @endforeach
-          
-        </tbody>
+    
         <tfoot>
             <tr>
             <th>ID</th>  <th>Papel</th>
@@ -136,11 +117,42 @@
  $(document).ready(function() {
     var table = $('#example').DataTable( {
         
+
+
+
+        
         rowReorder: {
             selector: 'td:nth-child(2)'
 
         },
-        responsive: true
+        responsive: true,
+
+       
+                    "serverSide": true,
+                    "ajax": "{{ url('api/stores/'. $store->id . '/solidwastes' ) }}",
+                    "columns": [
+                     
+{data: 'id'},
+    {data: 'paper'},
+    {data: 'paperboard'},
+    {data: 'plastic'},
+    {data: 'pvc'},
+    
+    {data: 'scrap'},
+    {data: 'glass'},
+    {data: 'food'},
+    {data: 'ordinary'},
+    {data: 'observation'},
+    
+    {data: 'created_at',
+    
+    
+    
+    },
+
+
+    {data: 'btn'},
+                    ],
 
         
     } );
@@ -148,4 +160,7 @@
        </script> 
 
 @endsection
+
+
+
 

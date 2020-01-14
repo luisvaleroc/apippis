@@ -185,3 +185,6 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 
 
 });
+
+
+    

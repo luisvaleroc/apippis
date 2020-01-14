@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Solidwaste;
+use App\Store;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -111,3 +115,32 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('details', 'LogController@details');
 });
 
+
+
+
+Route::post('solidwastes', 'SolidwasteController@datasolidwastes')->name('solidwastes.solidwaste')
+;
+
+
+
+    
+Route::get('stores/{id}/solidwastes', function ($id){
+  
+    $store = Store::find($id);
+        
+    $solidwastes= $store->solidwaste();
+
+
+
+	return datatables()
+    ->eloquent($store->solidwaste())  
+      		->addColumn('btn', 'actions')
+        ->rawColumns(['btn'])
+        ->editColumn('created_at', function ($contact){
+            return date('d/m/y H:i', strtotime($contact->created_at) );
+        })
+        ->filterColumn('created_at', function ($query, $keyword) {
+            $query->whereRaw("DATE_FORMAT(created_at,'%d/%m/%y %H:%i') like ?", ["%$keyword%"]);
+        })
+		->toJson();
+});
