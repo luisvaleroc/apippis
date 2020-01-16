@@ -72,4 +72,7 @@ class User extends Authenticatable
      public function Brand(){
         return $this->belongsTo('App\Brand');
     }
+    public function Store(){
+        return $this->belongsTo('App\Store');
+    }
 }

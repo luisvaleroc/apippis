@@ -18,13 +18,13 @@ class SolidwasteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id)
+    public function index( $id)
     {
         $store = Store::find($id);
         
-        $solidwastes= $store->solidwaste()->name($request->get('name'))->paginate();
+       // $solidwastes= $store->solidwaste()->name($request->get('name'))->paginate();
+       $solidwastes= $store->solidwaste()->orderBy('ID', 'DESC')->get();
 
-     
         return view('solidwastes.index', compact('store', 'solidwastes'));
 
          //return response()->json($solidwastes, 200);

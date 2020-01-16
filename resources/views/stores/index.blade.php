@@ -22,7 +22,7 @@
                       </li>
                       
                     </ul>
-                    
+<!--                     
                     {{ Form::open(['route' => 'stores.index', 'method' => 'GET', 'class' => 'form-inline', 'store' => 'search']) }}
                     <div class="form-group mx-sm-3 mb-2">
                             {{ Form::text('name', null, ['placeholder' => 'Buscar','class' => 'form-control', 'id' => 'name']) }}
@@ -30,7 +30,7 @@
                     </div>
                           <button type="submit" class="btn btn-primary mb-2">Buscar</button> 
                             
-                        {{ Form::close() }}
+                        {{ Form::close() }} -->
 
                         
                   </nav>
@@ -38,13 +38,13 @@
         
                   
                 <div class="panel-body">
-                    <table id="stores" class="table table-striped table-hover">
+                <table id="stores" class="display nowrap" style="width:100%">
                         <thead class="">
                             <tr>
                                 <th width="10px">ID</th>
                                 <th>Nombre</th>
                                 <th>Dirección</th>
-                                <th colspan="3">&nbsp;</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,23 +53,62 @@
                                 <td>{{ $store->id }}</td>
                                 <td>{{ $store->name }}</td>
                                 <td>{{ $store->address }}</td>
-                                @include('stores.partials.canlist')
+                              <td>@include('stores.partials.canlist') </td>  
                             </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+            <tr>
+            <th width="10px">ID</th>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Acciones</th>
+
+            </tr>
+        </tfoot>
                     </table>
-                    {{ $stores->render() }}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 
-
 <script>
-        $(document).ready(function() {
-       $('#stores').DataTable();
-   } );  
-       </script> -->
+ $(document).ready(function() {
+    var table = $('#stores').DataTable( {
+        
+
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+
+        },
+        responsive: true,
+
+                    "language": {
+                        "info": "_TOTAL_ registros",
+                        "search": "Buscar",
+                        "paginate": {
+                            "next": "Siguiente",
+                            "previous": "Anterior",
+                        },
+                        "lengthMenu": 'Mostrar <select >'+
+                                    '<option value="10">10</option>'+
+                                    '<option value="30">30</option>'+
+                                    '<option value="-1">Todos</option>'+
+                                    '</select> registros',
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "emptyTable": "No hay datos",
+                        "zeroRecords": "No hay coincidencias", 
+                        "infoEmpty": "",
+                        "infoFiltered": ""
+                    }
+
+
+
+
+
+    } );
+} );
+       </script> 
 @endsection

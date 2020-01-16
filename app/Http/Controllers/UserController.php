@@ -78,4 +78,31 @@ class UserController extends Controller
         $user = User::find($id)->delete();
         return back()->with('status', 'Eliminado correctamente');
     }
+
+    public function AdminBrandChanged(Brand $brand)
+    {
+        
+        $user = auth()->user();
+        $user->brand()->associate($brand)->save();
+    
+
+
+        return redirect()->route('stores.index', $brand->id)
+        ->with('status', 'Empresa guardada con éxito');
+
+        // return response()->json([
+        //     $brand,
+        //     "message" => "La Empresa a sido actualizada correctamente.",
+        
+        // ], 200);
+    }
+
+    public function userStore(Store $store = null)
+    {
+
+        $users= $store->user()->get();
+
+
+        return view('storesusers.index', compact('users'));
+    }
 }

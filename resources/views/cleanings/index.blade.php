@@ -23,25 +23,31 @@
                       
                     </ul>
                     
-                    {{ Form::open(['route' => array('cleanings.index', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'cleaning' => 'search']) }}
+                    <!-- {{ Form::open(['route' => array('cleanings.index', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'cleaning' => 'search']) }}
                     <div class="form-group mx-sm-3 mb-2">
                             {{ Form::text('name', null, ['placeholder' => 'Buscar','class' => 'form-control', 'id' => 'name']) }}
 
                     </div>
                           <button type="submit" class="btn btn-primary mb-2">Buscar</button> 
                             
-                        {{ Form::close() }}
+                        {{ Form::close() }} -->
 
                         
                   </nav>
 
         
                   
-                <div class="panel-body">
-                    <table id="cleanings" class="table table-striped table-hover">
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel-body">
+                <table id="cleanings" class="display nowrap" style="width:100%">
                         <thead class="">
                             <tr>
-                                <th width="10px">ID</th>
+                                <th >Creado</th>
                                 <th> Nombre</th>
                                 <th>Rut</th>
                                 <th>Nariz</th>
@@ -54,15 +60,14 @@
                                 <th>Uñas</th>
                                 <th>Uniforme</th>      
                                 <th>Observacón</th>                          
-                                <th>Creado</th>
 
-                                <th colspan="3">&nbsp;</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($cleanings as $cleaning)
                             <tr>
-                                <td>{{ $cleaning->id }}</td>
+                            <td idth="30px">{{ $cleaning->created_at->format('d-m-Y') }}</td>
                                 <td>{{ $cleaning->employee->name }}</td>
                                 <td>{{ $cleaning->employee->rut }}</td>
                                 <td>{{ $cleaning->mask }}</td>
@@ -78,18 +83,72 @@
                                 <td>{{ $cleaning->observation }}</td>
                                 
                             
-                                <td idth="30px">{{ $cleaning->created_at->format('d-m-Y') }}</td>
-                                @include('cleanings.partials.canlist')
+                             <td>   @include('cleanings.partials.canlist')</td>
                             </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+            <tr>
+            <th >Creado</th>
+                                <th> Nombre</th>
+                                <th>Rut</th>
+                                <th>Nariz</th>
+                                <th>Heridas</th>
+                                <th>Maquillaje</th>
+                                <th>Joyas</th>
+                                <th>Orejas</th>
+                                <th>Zapatos</th>
+                                <th>Pelo</th>
+                                <th>Uñas</th>
+                                <th>Uniforme</th>      
+                                <th>Observacón</th>                          
+
+                                <th>Acciones</th>
+            </tr>
+        </tfoot>
                     </table>
-                    {{ $cleanings->render() }} 
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+<script>
+ $(document).ready(function() {
+    var table = $('#cleanings').DataTable( {
+        
+
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+
+        },
+        responsive: true,
+
+                    "language": {
+                        "info": "_TOTAL_ registros",
+                        "search": "Buscar",
+                        "paginate": {
+                            "next": "Siguiente",
+                            "previous": "Anterior",
+                        },
+                        "lengthMenu": 'Mostrar <select >'+
+                                    '<option value="10">10</option>'+
+                                    '<option value="30">30</option>'+
+                                    '<option value="-1">Todos</option>'+
+                                    '</select> registros',
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "emptyTable": "No hay datos",
+                        "zeroRecords": "No hay coincidencias", 
+                        "infoEmpty": "",
+                        "infoFiltered": ""
+                    }
 
 
+
+
+
+    } );
+} );
+       </script> 
+
+<div class="float-left">Float left on all viewport sizes</div><br>
+<div class="float-right">Float right on all viewport sizes</div><br>
+<div class="float-none">Don't float on all viewport sizes</div>
 @endsection

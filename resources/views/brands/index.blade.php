@@ -23,28 +23,35 @@
                       
                     </ul>
                     
-                    {{ Form::open(['route' => 'brands.index', 'method' => 'GET', 'class' => 'form-inline', 'user' => 'search']) }}
+                    <!-- {{ Form::open(['route' => 'brands.index', 'method' => 'GET', 'class' => 'form-inline', 'user' => 'search']) }}
                     <div class="form-group mx-sm-3 mb-2">
                             {{ Form::text('name', null, ['placeholder' => 'Nombre del rol','class' => 'form-control', 'id' => 'name']) }}
 
                     </div>
                           <button type="submit" class="btn btn-primary mb-2">Buscar</button> 
                             
-                        {{ Form::close() }}
+                        {{ Form::close() }} -->
 
                         
                   </nav>
 
         
                   
-                <div class="panel-body">
-                    <table id="brands" class="table table-striped table-hover">
+          
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel-body">
+<table id="brands" class="display nowrap" style="width:100%">
+
                         <thead class="">
                             <tr>
                                 <th width="10px">ID</th>
                                 <th>Nombre</th>
                                 <th>Sector</th>
-                                <th colspan="3">&nbsp;</th>
+                                <th >Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,23 +60,59 @@
                                 <td>{{ $brand->id }}</td>
                                 <td>{{ $brand->name }}</td>
                                 <td>{{ $brand->sector }}</td>
-                                @include('brands.partials.canlist')
+                               <td> @include('brands.partials.canlist')</td>
                             </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+            <tr>
+            <th width="10px">ID</th>
+                                <th>Nombre</th>
+                                <th>Sector</th>
+                                <th >Acciones</th>
+            </tr>
                     </table>
-                    {{ $brands->render() }}
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 
-
 <script>
-        $(document).ready(function() {
-       $('#brands').DataTable();
-   } );  
-       </script> -->
+ $(document).ready(function() {
+    var table = $('#brands').DataTable( {
+        
+
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+
+        },
+        responsive: true,
+
+                    "language": {
+                        "info": "_TOTAL_ registros",
+                        "search": "Buscar",
+                        "paginate": {
+                            "next": "Siguiente",
+                            "previous": "Anterior",
+                        },
+                        "lengthMenu": 'Mostrar <select >'+
+                                    '<option value="10">10</option>'+
+                                    '<option value="30">30</option>'+
+                                    '<option value="-1">Todos</option>'+
+                                    '</select> registros',
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "emptyTable": "No hay datos",
+                        "zeroRecords": "No hay coincidencias", 
+                        "infoEmpty": "",
+                        "infoFiltered": ""
+                    }
+
+
+
+
+
+    } );
+} );
+       </script> 
+ 
+
 @endsection
+
+     

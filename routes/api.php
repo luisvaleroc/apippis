@@ -127,15 +127,21 @@ Route::post('solidwastes', 'SolidwasteController@datasolidwastes')->name('solidw
 Route::get('stores/{id}/solidwastes', function ($id){
   
     $store = Store::find($id);
-        
     $solidwastes= $store->solidwaste();
-
 
 
 	return datatables()
     ->eloquent($store->solidwaste())  
-      		->addColumn('btn', 'actions')
+      		->addColumn('btn', 'solidwastes.actions')
         ->rawColumns(['btn'])
+->editColumn('storeid', function ($solidwastes) {
+    return $solidwastes->store->id;
+    
+})
+
+->editColumn('storeid', function ($solidwaste){
+    return $solidwastes->store->id;
+})
         ->editColumn('created_at', function ($contact){
             return date('d/m/y H:i', strtotime($contact->created_at) );
         })

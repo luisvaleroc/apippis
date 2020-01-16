@@ -38,7 +38,7 @@ class BrandController extends Controller
         // return response()->json($brands, 200);
         
         //$brands = Brand::paginate();
-        $brands = Brand::name($request->get('name'))->orderBy('id', 'DESC')->paginate();
+        $brands = Brand::name($request->get('name'))->orderBy('id', 'DESC')->get();
 
         return view('brands.index', compact('brands'));
         
@@ -145,7 +145,7 @@ $validateData = $request->validate([
 
 
         return redirect()->route('brands.edit', $brand->id)
-        ->with('status', 'Empresa guardada con éxito');
+        ->with('status', 'Guardado con éxito');
 
         // return response()->json([
         //     $brand,
@@ -169,4 +169,8 @@ $validateData = $request->validate([
         
         // ], 200); 
     }
+
+
+
+    
 }

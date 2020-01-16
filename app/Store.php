@@ -39,6 +39,10 @@ class Store extends Model
         return $this->hasMany('App\Cleaning');
      }
 
+     public function users(){
+      return $this->hasMany('App\User');
+  }
+
      public function scopeName($query, $name){
         if (trim($name) != ""){
         // $query->where('name', "LIKE",  "%$name%");

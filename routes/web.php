@@ -182,7 +182,9 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 	Route::get('stores/{store}/plants/{plant}/edit', 'PlantController@edit')->name('plants.edit')
 		->middleware('permission:plants.edit');
 	
-
+		Route::get('brands/{brand}/changed', 'UserController@AdminBrandChanged')->name('changebrand.edit')
+		->middleware('permission:brands.index');
+	
 
 });
 

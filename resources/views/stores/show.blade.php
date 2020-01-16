@@ -41,6 +41,14 @@
                                         </a>
                                         @endcan
                                       </li>
+                                      <li class="nav-item">
+                                    @can('stores.show')
+                                    <a href="{{ route('storseusers.index') }}" 
+                                    class="btn btn-sm btn-success pull-right">
+                                        Usuarios Tienda
+                                    </a>
+                                    @endcan
+                                  </li>
                             </ul>
                     </nav>
 

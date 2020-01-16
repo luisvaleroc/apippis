@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                         <nav id="navbar-central" class="navbar navbar-light bg-light">
-                                <a class="navbar-brand" href="#">Usuario</a>
+                                <a class="navbar-brand" href="#">Usuarios</a>
                                 <ul class="nav nav-pills">
                                   
                                   <li class="nav-item">
@@ -23,20 +23,13 @@
                         </nav>
                 </div>
 
-                <div class="panel-body">                                        
-                    <p><strong>Nombre</strong>     {{ $user->name }}</p>
-                    <p><strong>Email</strong>      {{ $user->email }}</p>
-                    <p><strong>Empresa</strong>     <a href="{{ route('changebrand.edit', $user->brand->id ) }}" 
-                                        class="">
-                                        {{ $user->brand->name }}
-                                        </a></p>
-                    <p><strong>Local</strong>
-                    @foreach($user->brand->store as $store)
-                          {{ $store->name }},
-                            @endforeach
-                            </p>
+                <div class="panel-body">                    
+                    {!! Form::model($user, ['route' => ['users.update', $user->id],
+                    'method' => 'PUT']) !!}
 
-
+                        @include('users.partials.form')
+                        
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

@@ -28,57 +28,11 @@
                         
                   </nav>
 
-        <!--
-                  
-                <div class="panel-body">
-                    <table id="solidwastes" class="table table-striped table-hover">
-                        <thead class="">
-                            <tr>
-                                <th width="10px">ID</th>
-                                <th>Papel</th>
-                                <th>Carton</th>
-                                <th>Plastico</th>
-                                <th>PVC</th>
-                                <th>Chatarra</th>
-                                <th>Vidrio</th>
-                                <th>Comida y fruta</th>
-                                <th>Ordinarios</th>
-                                <th>Observación</th>
-                                <th>Creado</th>
-
-                                <th colspan="3">&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($solidwastes as $solidwaste)
-                            <tr>
-                                <td>{{ $solidwaste->id }}</td>
-                                <td>{{ $solidwaste->paper }}</td>
-                                <td>{{ $solidwaste->paperboard }}</td>
-                                <td>{{ $solidwaste->plastic }}</td>
-                                <td>{{ $solidwaste->pvc }}</td>
-                                <td>{{ $solidwaste->scrap }}</td>
-                                <td>{{ $solidwaste->glass }}</td>
-                                <td>{{ $solidwaste->food }}</td>
-                                <td>{{ $solidwaste->ordinary }}</td>
-                                <td>{{ $solidwaste->observation }}</td>
-                                <td idth="30px">{{ $solidwaste->created_at->format('d-m-Y') }}</td>
-                                @include('solidwastes.partials.canlist')
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{ $solidwastes->render() }} 
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 <table id="example" class="display nowrap" style="width:100%">
         <thead>
             <tr>
-            <th>ID</th>
+            <th>Creado</th>
             <th>Papel</th>
                                 <th>Carton</th>
                                 <th>Plastico</th>
@@ -88,16 +42,33 @@
                                 <th>Comida y fruta</th>
                                 <th>Ordinarios</th>
                                 <th>Observación</th>
-                                <th>Creado</th>
                                 <th>Acciones</th>
             </tr>
         </thead>
-    
+        <tbody>
+        @foreach($solidwastes as $solidwaste)
+                            <tr>
+                            <td >{{ $solidwaste->created_at->format('d-m-Y') }}</td>
+                                <td>{{ $solidwaste->paper }}</td>
+                                <td>{{ $solidwaste->paperboard }}</td>
+                                <td>{{ $solidwaste->plastic }}</td>
+                                <td>{{ $solidwaste->pvc }}</td>
+                                <td>{{ $solidwaste->scrap }}</td>
+                                <td>{{ $solidwaste->glass }}</td>
+                                <td>{{ $solidwaste->food }}</td>
+                                <td>{{ $solidwaste->ordinary }}</td>
+                                <td>{{ $solidwaste->observation }}</td>
+                                @include('solidwastes.partials.canlist')
+
+                            </tr>
+                            @endforeach
+          
+        </tbody>
         <tfoot>
             <tr>
             <th>ID</th>  <th>Papel</th>
 
-                                <th>Carton</th>
+                                <th>Creado</th>
                                 <th>Plastico</th>
                                 <th>PVC</th>
                                 <th>Chatarra</th>
@@ -105,12 +76,12 @@
                                 <th>Comida y fruta</th>
                                 <th>Ordinarios</th>
                                 <th>Observación</th>
-                                <th>Creado</th>
                                 <th>Acciones</th>
 
             </tr>
         </tfoot>
     </table>
+
 
 
     <script>
@@ -128,36 +99,33 @@
         responsive: true,
 
        
-                    "serverSide": true,
-                    "ajax": "{{ url('api/stores/'. $store->id . '/solidwastes' ) }}",
-                    "columns": [
-                     
-{data: 'id'},
-    {data: 'paper'},
-    {data: 'paperboard'},
-    {data: 'plastic'},
-    {data: 'pvc'},
-    
-    {data: 'scrap'},
-    {data: 'glass'},
-    {data: 'food'},
-    {data: 'ordinary'},
-    {data: 'observation'},
-    
-    {data: 'created_at',
-    
-    
-    
-    },
+           
 
-
-    {data: 'btn'},
-                    ],
-
-        
+                    "language": {
+                        "info": "_TOTAL_ registros",
+                        "search": "Buscar",
+                        "paginate": {
+                            "next": "Siguiente",
+                            "previous": "Anterior",
+                        },
+                        "lengthMenu": 'Mostrar <select >'+
+                                    '<option value="10">10</option>'+
+                                    '<option value="30">30</option>'+
+                                    '<option value="-1">Todos</option>'+
+                                    '</select> registros',
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "emptyTable": "No hay datos",
+                        "zeroRecords": "No hay coincidencias", 
+                        "infoEmpty": "",
+                        "infoFiltered": ""
+                    }
     } );
 } );
        </script> 
+
+
+
 
 @endsection
 

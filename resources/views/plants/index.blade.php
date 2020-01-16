@@ -23,26 +23,33 @@
                       
                     </ul>
                     
-                    {{ Form::open(['route' => array('plants.index', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'plant' => 'search']) }}
+                    <!-- {{ Form::open(['route' => array('plants.index', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'plant' => 'search']) }}
                     <div class="form-group mx-sm-3 mb-2">
                             {{ Form::text('name', null, ['placeholder' => 'Buscar','class' => 'form-control', 'id' => 'name']) }}
 
                     </div>
                           <button type="submit" class="btn btn-primary mb-2">Buscar</button> 
                             
-                        {{ Form::close() }}
+                        {{ Form::close() }} -->
 
                         
                   </nav>
 
         
-                  
-                <div class="panel-body">
-                    <table id="plants" class="table table-striped table-hover">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+<div class="panel-body">
+                <table id="plants" class="display nowrap" style="width:100%">
                         <thead class="">
                             <tr>
-                                <th width="10px">ID</th>
-                                <th> Equipo 1</th>
+                                <th>Creado</th>
+                                <th>Equipo 1</th>
                                 <th>Equipo 2</th>
                                 <th>Equipo 3</th>
                                 <th>Pisos</th>
@@ -50,16 +57,18 @@
                                 <th>Basurero</th>
                                 <th>Acción correctiva</th>
                                 <th>Observación</th>
-                                <th>Creado</th>
+                                <th>Acciones</th>
                               
 
-                                <th colspan="3">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($plants as $plant)
                             <tr>
-                                <td>{{ $plant->id }}</td>
+                            <td idth="30px">{{ 
+                                    date('d-m-Y', strtotime($plant->created_at))
+                                }}</td>
+                            
                                 <td>{{ $plant->equip1 }}</td>
                                 <td>{{ $plant->equip2 }}</td>
                                 <td>{{ $plant->equip3 }}</td>
@@ -68,25 +77,68 @@
                                 <td>{{ $plant->dump }}</td>
                                 <td>{{ $plant->action }}</td>
                                 <td>{{ $plant->observation }}</td>
-                               
-                                <td idth="30px">{{ 
-                                    date('d-m-Y', strtotime($plant->created_at))
-                                
-                                }}</td>
-                             
-                            
-                                
-                                @include('plants.partials.canlist')
+                           
+                                <td>   @include('plants.partials.canlist')</td>
+                   
                             </tr>
                             @endforeach
                         </tbody>
-                    </table>
-                    {{ $plants->render() }} 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        <tfoot>
+            <tr>
+                                <th>Creado</th>
+                                <th>Equipo 1</th>
+                                <th>Equipo 2</th>
+                                <th>Equipo 3</th>
+                                <th>Pisos</th>
+                                <th>Paredes</th>
+                                <th>Basurero</th>
+                                <th>Acción correctiva</th>
+                                <th>Observación</th>
+                                <th>Acciones</th>
+            </tr>
+        </tfoot>
 
+                    </table>
+                </div>
+
+
+<script>
+ $(document).ready(function() {
+    var table = $('#plants').DataTable( {
+        
+
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+
+        },
+        responsive: true,
+
+                    "language": {
+                        "info": "_TOTAL_ registros",
+                        "search": "Buscar",
+                        "paginate": {
+                            "next": "Siguiente",
+                            "previous": "Anterior",
+                        },
+                        "lengthMenu": 'Mostrar <select >'+
+                                    '<option value="10">10</option>'+
+                                    '<option value="30">30</option>'+
+                                    '<option value="-1">Todos</option>'+
+                                    '</select> registros',
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "emptyTable": "No hay datos",
+                        "zeroRecords": "No hay coincidencias", 
+                        "infoEmpty": "",
+                        "infoFiltered": ""
+                    }
+
+
+
+
+
+    } );
+} );
+       </script> 
 
 @endsection

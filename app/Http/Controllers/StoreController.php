@@ -27,9 +27,9 @@ class StoreController extends Controller
         //$user = $user->brand;
         //$user = $user->brand;
 
-        $brand = brand::orderBy('id', 'DESC')
+        $brand = brand::orderBy('id', 'ASC')
             ->where('id', auth()->user()->brand_id)->first();
-        $stores= $brand->Store()->name($request->get('name'))->paginate();
+        $stores= $brand->Store()->name($request->get('name'))->orderBy('id', 'ASC')->get();
 
         //$users = User::name($request->get('name'))->orderBy('id', 'DESC')->paginate();
 

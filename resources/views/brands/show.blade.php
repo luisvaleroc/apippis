@@ -32,8 +32,23 @@
                 </div>
 
                 <div class="panel-body">                                        
-                    <p><strong>Nombre</strong>     {{ $brand->name }}</p>
+                    <p><strong>Nombre</strong>  <a href="{{ route('changebrand.edit', $brand->id ) }}" 
+                                        class="">
+                                        {{ $brand->name }}
+                                        </a>   </p>
+
+                   
+
+
+
                     <p><strong>Sector</strong>       {{ $brand->sector }}</p>
+
+
+                    <p><strong>Local</strong>
+                    @foreach($brand->store as $store)
+                          {{ $store->name }},
+                            @endforeach
+                            </p>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@ class CleaningController extends Controller
     {
         $store = Store::find($id);
         
-        $cleanings= $store->cleaning()->name($request->get('name'))->paginate();
+        $cleanings= $store->cleaning()->name($request->get('name'))->orderBy('ID', 'DESC')->get();
 
      
         return view('cleanings.index', compact('store', 'cleanings'));
