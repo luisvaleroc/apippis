@@ -6,14 +6,14 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                        <nav id="navbar-central" class="navbar navbar-light bg-light">
-                                <a class="navbar-brand" href="#">Usuarios</a>
+                <nav id="navbar-central" class="navbar navbar-light bg-light">
+                                <a class="navbar-brand" href="#">Usuarios Tienda</a>
                                 <ul class="nav nav-pills">
-                                  
+                               
                                   <li class="nav-item">
-                                        @can('roles.create')
-                                        <a href="{{ route('users.index') }}" 
-                                        class="btn btn-sm bt44n-success pull-right">
+                                        @can('brands.index')
+                                        <a href="{{ route('brandusers.index') }}" 
+                                        class="btn btn-sm btn-success pull-right">
                                             Ver
                                         </a>
                                         @endcan
@@ -21,15 +21,18 @@
                                   
                                 </ul>
                         </nav>
-                </div>
 
+                </div>
+                @include('common.success')
+
+
+                
                 <div class="panel-body">                    
-                    {!! Form::model($user, ['route' => ['brandsuser.update', $user->id],
-                    'method' => 'PUT']) !!}
+                    {{ Form::open(['route' => 'brandusers.store']) }}
 
                         @include('brandusers.partials.form')
                         
-                    {!! Form::close() !!}
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>

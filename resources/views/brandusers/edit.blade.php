@@ -12,7 +12,7 @@
                                   
                                   <li class="nav-item">
                                         @can('roles.create')
-                                        <a href="{{ route('users.index') }}" 
+                                        <a href="{{ route('brandusers.index') }}" 
                                         class="btn btn-sm bt44n-success pull-right">
                                             Ver
                                         </a>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="panel-body">                    
-                    {!! Form::model($user, ['route' => ['brandsuser.update', $user->id],
+                    {!! Form::model($user, ['route' => ['brandusers.update', $user->id],
                     'method' => 'PUT']) !!}
 
                         @include('brandusers.partials.form')

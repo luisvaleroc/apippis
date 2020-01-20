@@ -41,15 +41,15 @@
                                         </a>
                                         @endcan
                                       </li>
-                                      <li class="nav-item">
+                                      <!-- <li class="nav-item">
                                     @can('stores.show')
-                                    <a href="{{ route('storseusers.index') }}" 
+                                    <a href="{{ route('brands.index') }}" 
                                     class="btn btn-sm btn-success pull-right">
                                         Usuarios Tienda
                                     </a>
                                     @endcan
                                   </li>
-                            </ul>
+                            </ul> -->
                     </nav>
 
                 </div>

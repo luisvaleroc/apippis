@@ -63,6 +63,12 @@
 </div>
 
 <div class="form-group">
+	{{ Form::label('observation', 'Observación') }}
+	<input type="file" capture="camera">
+</div>
+
+
+<div class="form-group">
 	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
 </div>
 

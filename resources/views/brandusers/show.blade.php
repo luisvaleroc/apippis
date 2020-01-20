@@ -12,7 +12,7 @@
                                   
                                   <li class="nav-item">
                                         @can('roles.create')
-                                        <a href="{{ route('users.index') }}" 
+                                        <a href="{{ route('brandusers.index') }}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Ver
                                         </a>
@@ -26,10 +26,7 @@
                 <div class="panel-body">                                        
                     <p><strong>Nombre</strong>     {{ $user->name }}</p>
                     <p><strong>Email</strong>      {{ $user->email }}</p>
-                    <p><strong>Empresa</strong>     <a href="{{ route('changebrand.edit', $user->brand->id ) }}" 
-                                        class="">
-                                        {{ $user->brand->name }}
-                                        </a></p>
+                    <p><strong>Telefono</strong>      {{ $user->phone }}</p>
                     <p><strong>Local</strong>
                     @foreach($user->brand->store as $store)
                           {{ $store->name }},

@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'brand_id',
+        'name', 'email', 'password', 'brand_id', 'store_id', 'phone', 'owner',
     ];
 
     /**
@@ -75,4 +75,13 @@ class User extends Authenticatable
     public function Store(){
         return $this->belongsTo('App\Store');
     }
+
+    protected $with =['roles'];
+
+  
+
+  
 }
+
+
+

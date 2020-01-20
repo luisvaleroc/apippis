@@ -33,16 +33,17 @@
         <thead>
             <tr>
             <th>Creado</th>
-            <th>Papel</th>
-                                <th>Carton</th>
-                                <th>Plastico</th>
-                                <th>PVC</th>
-                                <th>Chatarra</th>
-                                <th>Vidrio</th>
-                                <th>Comida y fruta</th>
-                                <th>Ordinarios</th>
+            <th>Papel (Kg)</th>
+                                <th>Carton (Kg)</th>
+                                <th>Plastico (Kg)</th>
+                                <th>PVC (Kg)</th>
+                                <th>Chatarra (Kg)</th>
+                                <th>Vidrio (Kg)</th>
+                                <th>Comida y fruta (Kg)</th>
+                                <th>Ordinarios (Kg)</th>
+                                <th>Total (Kg)</th>
                                 <th>Observación</th>
-                                <th>Acciones</th>
+                                <th>Acciones (Kg)</th>
             </tr>
         </thead>
         <tbody>
@@ -57,6 +58,7 @@
                                 <td>{{ $solidwaste->glass }}</td>
                                 <td>{{ $solidwaste->food }}</td>
                                 <td>{{ $solidwaste->ordinary }}</td>
+                                <td>{{ $solidwaste->paper + $solidwaste->paperboard + $solidwaste->plastic + $solidwaste->pvc + $solidwaste->scrap + $solidwaste->glass + $solidwaste->food + $solidwaste->ordinary   }}</td>
                                 <td>{{ $solidwaste->observation }}</td>
                                 @include('solidwastes.partials.canlist')
 
@@ -66,15 +68,17 @@
         </tbody>
         <tfoot>
             <tr>
-            <th>ID</th>  <th>Papel</th>
+            <th>Creado</th>  <th>Papel (Kg)</th>
 
-                                <th>Creado</th>
-                                <th>Plastico</th>
-                                <th>PVC</th>
-                                <th>Chatarra</th>
-                                <th>Vidrio</th>
-                                <th>Comida y fruta</th>
+                            
+                                <th>Carton (Kg)</th>
+                                <th>PVC (Kg)</th>
+                                <th>Chatarra (Kg)</th>
+                                <th>Vidrio (Kg)</th>
+                                <th>Comida y fruta (Kg)</th>
+                                <th>Ordinarios (Kg)</th>
                                 <th>Ordinarios</th>
+                                <th>Total (Kg)</th>
                                 <th>Observación</th>
                                 <th>Acciones</th>
 

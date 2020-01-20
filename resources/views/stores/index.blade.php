@@ -20,7 +20,15 @@
                         </a>
                         @endcan
                       </li>
-                      
+                      <li class="nav-item">
+                                    @can('stores.show')
+                                    <a href="{{ route('brandusers.index') }}" 
+                                    class="btn btn-sm btn-success pull-right">
+                                        Usuarios Empresa
+                                    </a>
+                                    @endcan
+                                  </li>
+                            </ul>
                     </ul>
 <!--                     
                     {{ Form::open(['route' => 'stores.index', 'method' => 'GET', 'class' => 'form-inline', 'store' => 'search']) }}

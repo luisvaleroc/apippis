@@ -26,6 +26,7 @@
                 <div class="panel-body">                                        
                     <p><strong>Nombre</strong>     {{ $user->name }}</p>
                     <p><strong>Email</strong>      {{ $user->email }}</p>
+                    <p><strong>Email</strong>      {{ $user->email }}</p>
                     <p><strong>Empresa</strong>     <a href="{{ route('changebrand.edit', $user->brand->id ) }}" 
                                         class="">
                                         {{ $user->brand->name }}

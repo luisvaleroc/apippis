@@ -39,7 +39,8 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('permission:roles.destroy');
 	Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')
 		->middleware('permission:roles.edit');
-	//Users
+	
+		//Users
 
 	Route::get('users', 'UserController@index')->name('users.index')
 		->middleware('permission:users.index');
@@ -51,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('permission:users.destroy');
 	Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')
 		->middleware('permission:users.edit');
+
+
+
 	//Brands
 	Route::post('brands/store', 'BrandController@store')->name('brands.store')
 		->middleware('permission:brands.create');
@@ -184,6 +188,44 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 	
 		Route::get('brands/{brand}/changed', 'UserController@AdminBrandChanged')->name('changebrand.edit')
 		->middleware('permission:brands.index');
+//Users brands stores
+
+Route::get('brand/users', 'UserController@BrandUser')->name('brandusers.index')
+->middleware('permission:brandusers.index');
+
+
+
+Route::put('brand/users/{user}', 'UserController@brandUserUpdate')->name('brandusers.update')
+->middleware('permission:brandusers.update');
+
+Route::get('brand/users/{user}/edit', 'UserController@brandUserEdit')->name('brandusers.edit')
+->middleware('permission:brandusers.edit');
+
+Route::post('brand/users/store', 'UserController@brandUserStore')->name('brandusers.store')
+->middleware('permission:brandusers.store');
+
+
+
+Route::get('brand/users/create', 'UserController@brandUserCreate')->name('brandusers.create')
+->middleware('permission:brandusers.create');
+Route::get('brand/users/{user}', 'UserController@brandUsershow')->name('brandusers.show')
+		->middleware('permission:brandusers.show');
+
+
+
+// Route::get('store/users/{user}', 'UserController@BrandUser')->name('Storebrand.index')
+// ->middleware('permission:StoreBrand.index');
+
+// Route::get('store/users/{user}/store', 'UserController@BrandUserUpdate')->name('brandusers.update')
+// ->middleware('permission:brandusers.update');
+
+
+
+// Route::get('store/users/{user}', 'UserController@BrandUser')->name('Storebrand.index')
+// ->middleware('permission:StoreBrand.index');
+
+
+
 	
 
 });

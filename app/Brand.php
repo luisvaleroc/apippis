@@ -21,7 +21,7 @@ class Brand extends Model
     //      return $this->belongsTo('App\User');
     //  }
 
-     public function users(){
+     public function user(){
         return $this->hasMany('App\User');
     }
 
@@ -38,6 +38,10 @@ class Brand extends Model
         }
      }
 
+     public function Roles()
+     {
+         return $this->hasManyThrough('Caffeinated\Shinobi\Models\Role', 'App\User');
+     }
 }
 
 
