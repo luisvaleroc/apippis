@@ -37,7 +37,7 @@ class PlantController extends Controller
             ->select('plants.id', 'plants.observation', 'plants.equip1', 'plants.equip2', 'plants.equip3', 'plants.floor', 'plants.wall', 'plants.dump', 'plants.action', 'plants.created_at as created_at')
             ->where('stores.id', $store->id)
             ->orderBy('stores.id', 'desc')
-            ->paginate();
+            ->get();
             
 
 
@@ -59,7 +59,7 @@ class PlantController extends Controller
     public function create($id)
     {
         $store = Store::find($id);
-        $rooms = Room::get();
+        $rooms = Room::where('store_id', $store->id)->get();
         
         return view('plants.create', compact('store', 'rooms'));
     }
@@ -84,9 +84,31 @@ class PlantController extends Controller
             'room_id' => 'required',
         ]);
 
-        $plant = Plant::create($request->all());
+
         
+        $plant = new Plant();
+
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $name);
+        }
        
+        //$plant = Plant::create($request->all());
+
+
+            
+           
+            $plant->equip1 = $request->input('equip1');
+            $plant->equip2 = $request->input('equip2');
+            $plant->equip3 = $request->input('equip3');
+            $plant->floor = $request->input('floor');
+            $plant->wall = $request->input('wall');
+            $plant->dump = $request->input('dump');
+            $plant->action = $request->input('action');
+            $plant->room_id = $request->input('room_id');
+            $plant->photo = $name;
+            $plant->save();
 
         // $solidwaste->save();
         return redirect()->route('plants.create', $store->id)

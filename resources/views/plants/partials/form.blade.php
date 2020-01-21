@@ -63,9 +63,10 @@
 </div>
 
 <div class="form-group">
-	{{ Form::label('observation', 'Observación') }}
-	<input type="file" capture="camera">
+{!! Form::label('image', 'Imagen') !!}
+    {!! Form::file('photo', ['capture' => 'camera']) !!}
 </div>
+
 
 
 <div class="form-group">

@@ -1,3 +1,5 @@
+<div class="row">
+
 @can('brands.show')
     <a href="{{ route('brands.show', $brand->id) }}" 
     class="btn btn-sm btn-default">
@@ -19,3 +21,4 @@
     {!! Form::close() !!}
 @endcan
 
+</div>

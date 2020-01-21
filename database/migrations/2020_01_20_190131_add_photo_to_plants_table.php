@@ -14,7 +14,8 @@ class AddPhotoToPlantsTable extends Migration
     public function up()
     {
         Schema::table('plants', function (Blueprint $table) {
-            //
+            $table->string('photo')->nullable();
+
         });
     }
 
