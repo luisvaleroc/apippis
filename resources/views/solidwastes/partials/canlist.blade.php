@@ -2,7 +2,7 @@
 <td width="10px">
 @can('solidwastes.show')
 
-    <a href="{{ route('solidwastes.show', $solidwaste->id) }}" 
+    <a href="{{ route('solidwastes.show', [$store->id, $solidwaste->id]) }}" 
     class="btn btn-sm btn-default"title="Ver" >
     <span class="icofont-eye-alt btn btn-sm btn-default"></span>  
     </a>

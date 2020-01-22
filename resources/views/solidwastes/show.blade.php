@@ -25,6 +25,14 @@
                                     </a>
                                     @endcan
                                   </li>
+                                  <li class="nav-item">
+                                    @can('stores.show')
+                                    <a href="{{ route('stores.show',  $store->id) }}" 
+                                    class="btn btn-sm btn-success pull-right">
+                                        Todas las planillas
+                                    </a>
+                                    @endcan
+                                  </li>
                               
                             </ul>
                     </nav>
@@ -35,32 +43,24 @@
                     <p><strong>Local</strong>     {{ $store->name }}</p>
                     <p><strong>Direccion</strong>       {{ $store->address }}</p>
                 </div>
-                <div class="panel-body">
-                    <table id="stores" class="table table-striped table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th width="500px">Planilla</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                               <td>Desechos Solidos</td>
-                               <td width="10px">
-    <a href="{{ route('solidwastes.index', $store->id) }}" 
-    class="btn btn-sm btn-default">
-        ver
-    </a>
-</td>
-                            </tr>
+         
+                <div class="panel-body">                                        
+                    <p><strong>Registro y monitoreo limpieza y sanitización </strong>    
+                    <br>
+                    <p><strong>Fecha </strong>     {{ 
+                                    date('d-m-Y', strtotime($solidwaste->created_at))
+                                }} </p>
+                                <p><strong>Papel (Kg):</strong>    {{ $solidwaste->paper }}</p> 
+                                <p><strong>Carton (Kg):</strong>    {{ $solidwaste->paperboard }}</p> 
+                                <p><strong>Plastico (Kg):</strong>    {{ $solidwaste->plastic }}</p> 
+                                <p><strong>PVC (Kg):</strong>     {{ $solidwaste->pvc }}</p> 
+                                <p><strong>Chatarra (Kg):</strong>     {{ $solidwaste->scrap }}</p> 
+                                <p><strong>Vidrio (Kg):</strong>     {{ $solidwaste->glass }}</p> 
+                                <p><strong>Comida y fruta (Kg):</strong>     {{ $solidwaste->food }}</p> 
+                                <p><strong>Ordinarios:</strong>     {{ $solidwaste->ordinary }}</p>
+                                <p><strong>Total (Kg):</strong>      {{ $solidwaste->paper + $solidwaste->paperboard + $solidwaste->plastic + $solidwaste->pvc + $solidwaste->scrap + $solidwaste->glass + $solidwaste->food + $solidwaste->ordinary   }}</p>
+                                <p><strong>Observación:</strong>     {{ $solidwaste->observation }}</p>
                             
-                        </tbody>
-                    </table>
+                                <p><strong>Foto:</strong>  </p>   <img src="/images/{{ $solidwaste->photo}}" alt="..." width="500" height="" class="img-rounded">
                 </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
 @endsection

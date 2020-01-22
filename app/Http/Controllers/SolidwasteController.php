@@ -138,7 +138,7 @@ class SolidwasteController extends Controller
      */
     public function show(Store $store, Solidwaste $solidwaste)
     {
-        return view('solidwaste.show', compact('store', 'solidwaste'));
+        return view('solidwastes.show', compact('store', 'solidwaste'));
     }
 
     /**
@@ -179,6 +179,19 @@ class SolidwasteController extends Controller
         //     "message" => "La Empresa a sido actualizada correctamente.",
         
         // ], 200);
+
+        $validateData = $request->validate([
+            'paper' => 'required|numeric',
+            'paperboard' => 'required|numeric',
+            'plastic' => 'required|numeric',
+            'pvc' => 'required|numeric',
+            'scrap' => 'required|numeric',
+            'glass' => 'required|numeric',
+            'food' => 'required',
+            'ordinary' => 'required|numeric',
+            
+            
+        ]);
         
 
             

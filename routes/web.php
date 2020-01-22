@@ -101,10 +101,11 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 		->middleware('permission:solidwastes.index');
 	Route::get('stores/{store}/solidwastes/create', 'SolidwasteController@create')->name('solidwastes.create')
 		->middleware('permission:solidwastes.create');
-	Route::put('solidwastes/{brand}', 'SolidwasteController@update')->name('solidwastes.update')
-		->middleware('permission:solidwastes.edit');
-	Route::get('solidwastes/{brand}', 'SolidwasteController@show')->name('solidwastes.show')
+	
+	Route::get('store/{store}/solidwastes/{solidwaste}', 'SolidwasteController@show')->name('solidwastes.show')
 		->middleware('permission:solidwastes.show');
+		Route::put('solidwastes/{brand}', 'SolidwasteController@update')->name('solidwastes.update')
+		->middleware('permission:solidwastes.update');
 	Route::delete('solidwastes/{solidwaste}', 'SolidwasteController@destroy')->name('solidwastes.destroy')
 		->middleware('permission:solidwastes.destroy');
 	Route::get('stores/{store}/solidwastes/{solidwaste}/edit', 'SolidwasteController@edit')->name('solidwastes.edit')
