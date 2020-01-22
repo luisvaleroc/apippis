@@ -57,6 +57,7 @@ class SolidwasteController extends Controller
     public function store(Request $request, Store $store)
     {
         
+
         // $validator = Validator::make($request->all(), [ 
         //     'name' => 'required', 
         //     'address' => 'required', 
@@ -66,13 +67,53 @@ class SolidwasteController extends Controller
         // if ($validator->fails()) { 
         //     return response()->json(['error'=>$validator->errors()], 401);            
         // }
+        $validateData = $request->validate([
+            'paper' => 'required|numeric',
+            'paperboard' => 'required|numeric',
+            'plastic' => 'required|numeric',
+            'pvc' => 'required|numeric',
+            'scrap' => 'required|numeric',
+            'glass' => 'required|numeric',
+            'food' => 'required',
+            'ordinary' => 'required|numeric',
+            
+            
+        ]);
+        
+        $solidwaste = new Solidwaste();
 
-        $solidwaste = Solidwaste::create($request->all());
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $name);
+        }
+       
+        //$plant = Plant::create($request->all());
+
+
+            
+           
+            $solidwaste->paper = $request->input('paper');
+            $solidwaste->paperboard = $request->input('paperboard');
+            $solidwaste->plastic = $request->input('plastic');
+            $solidwaste->pvc = $request->input('pvc');
+            $solidwaste->scrap = $request->input('scrap');
+            $solidwaste->glass = $request->input('glass');
+            $solidwaste->food = $request->input('food');
+            $solidwaste->ordinary = $request->input('ordinary');
+            $solidwaste->store_id = $store->id;
+            $solidwaste->photo = $name;
+            $solidwaste->save();
+
+
+
+
+     //   $solidwaste = Solidwaste::create($request->all());
         
        
         
        
-        $solidwaste->store()->associate($store)->save();
+       // $solidwaste->store()->associate($store)->save();
 
         // $solidwaste->save();
         return redirect()->route('solidwastes.create', $store->id)
@@ -95,9 +136,9 @@ class SolidwasteController extends Controller
      * @param  \App\brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Solidwaste $solidwaste)
+    public function show(Store $store, Solidwaste $solidwaste)
     {
-        return response()->json($solidwaste, 200);
+        return view('solidwaste.show', compact('store', 'solidwaste'));
     }
 
     /**
@@ -138,12 +179,26 @@ class SolidwasteController extends Controller
         //     "message" => "La Empresa a sido actualizada correctamente.",
         
         // ], 200);
+        
 
+            
         $solidwaste = Solidwaste::find($id);
+
+
+        $solidwaste->fill($request->except('photo'));
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $name = time().$file->getClientOriginalName();
+            $solidwaste->photo = $name;
+            $file->move(public_path().'/images/', $name);
+        }
+        $solidwaste->save();
+
+
 
         $store = $solidwaste->store;
 
-        $solidwaste->update($request->all());
+        //$solidwaste->update($request->all());
 
         return redirect()->route('solidwastes.edit', [$store->id, $solidwaste->id] )
         ->with('status', 'Encuesta guardada con éxito');

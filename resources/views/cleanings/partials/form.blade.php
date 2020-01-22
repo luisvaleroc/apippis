@@ -71,6 +71,11 @@
 </div>
 
 <div class="form-group">
+{!! Form::label('photo', 'Tomar Foto') !!}
+    {!! Form::file('photo', ['capture' => 'camera']) !!}
+</div>
+
+<div class="form-group">
 	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
 </div>
 

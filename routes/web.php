@@ -145,7 +145,7 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 		->middleware('permission:cleanings.create');
 	Route::put('cleanings/{cleaning}', 'CleaningController@update')->name('cleanings.update')
 		->middleware('permission:cleanings.edit');
-	Route::get('cleanings/{cleaning}', 'CleaningController@show')->name('cleanings.show')
+	Route::get('stores/{store}/cleanings/{cleaning}', 'CleaningController@show')->name('cleanings.show')
 		->middleware('permission:cleanings.show');
 	Route::delete('cleanings/{employee}', 'CleaningController@destroy')->name('cleanings.destroy')
 		->middleware('permission:cleanings.destroy');
@@ -179,7 +179,7 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 		->middleware('permission:plants.create');
 	Route::put('plants/{plant}', 'PlantController@update')->name('plants.update')
 		->middleware('permission:plants.edit');
-	Route::get('plants/{plant}', 'PlantController@show')->name('plants.show')
+	Route::get('stores/{store}/plants/{plant}', 'PlantController@show')->name('plants.show')
 		->middleware('permission:plants.show');
 	Route::delete('plants/{plant}', 'PlantController@destroy')->name('plants.destroy')
 		->middleware('permission:plants.destroy');

@@ -68,11 +68,19 @@ class CleaningController extends Controller
             
             
         ]);
+
+           
+        $cleaning = new Cleaning();
+
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $name);
+        }
         $rut = $request->input('rut');
 
         $employee = Employee::where('rut', $rut)->first();
         
-        $cleaning = new Cleaning();
         $cleaning->mask = $request->input('mask');
         $cleaning->wound = $request->input('wound');
         $cleaning->makeup = $request->input('makeup');
@@ -85,6 +93,7 @@ class CleaningController extends Controller
         $cleaning->observation = $request->input('observation');
         $cleaning->employee_id = $employee->id;
         $cleaning->store_id = $store->id;
+        $cleaning->photo = $name;
 
        
         $cleaning->save();
@@ -105,9 +114,9 @@ class CleaningController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Store $store, Cleaning $cleaning)
     {
-        //
+        return view('cleanings.show', compact('store', 'cleaning'));
     }
 
     /**
@@ -132,11 +141,26 @@ class CleaningController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
+
         $cleaning = Cleaning::find($id);
+
+        $cleaning->fill($request->except('photo'));
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $name = time().$file->getClientOriginalName();
+            $cleaning->photo = $name;
+            $file->move(public_path().'/images/', $name);
+        }
+        $cleaning->save();
+
+
+       
 
         $store = $cleaning->store;
 
-        $cleaning->update($request->all());
+       // $cleaning->update($request->all());
 
         return redirect()->route('cleanings.edit', [$store->id, $cleaning->id] )
         ->with('status', 'Guardado con éxito');

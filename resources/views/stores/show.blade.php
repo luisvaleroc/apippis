@@ -17,14 +17,14 @@
                                 </a>
                                 @endcan
                               </li>
-                              <li class="nav-item">
+                              <!-- <li class="nav-item">
                                     @can('stores.create')
                                     <a href="{{ route('stores.index') }}" 
                                     class="btn btn-sm btn-success pull-right">
                                         Ver
                                     </a>
                                     @endcan
-                                  </li>
+                                  </li> -->
                                   <li class="nav-item">
                                         @can('employees.index')
                                         <a href="{{ route('employees.index', $store->id) }}" 
@@ -71,8 +71,9 @@
                                <td>Desechos Solidos</td>
                                <td width="10px">
     <a href="{{ route('solidwastes.index', $store->id) }}" 
-    class="btn btn-sm btn-default">
-        ver
+    class="btn btn-sm btn-default" title="Administrar planilla">
+    <span class="icofont-eye-alt btn btn-sm btn-default"></span>  
+
     </a>
 </td>
 
@@ -82,8 +83,9 @@
                                <td>Salud e Higiene</td>
                                <td width="10px">
     <a href="{{ route('cleanings.index', $store->id) }}" 
-    class="btn btn-sm btn-default">
-        ver
+    class="btn btn-sm btn-default" title="Administrar planilla" >
+    <span class="icofont-eye-alt btn btn-sm btn-default"></span>  
+
     </a>
 </td>
 
@@ -91,8 +93,9 @@
                                <td>Limpieza y sanitización</td>
                                <td width="10px">
     <a href="{{ route('plants.index', $store->id) }}" 
-    class="btn btn-sm btn-default">
-        ver
+    class="btn btn-sm btn-default"  title="Administrar planilla">
+    <span class="icofont-eye-alt btn btn-sm btn-default" ></span>  
+
     </a>
 </td>
 

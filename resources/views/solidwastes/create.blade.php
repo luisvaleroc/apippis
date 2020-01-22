@@ -18,6 +18,14 @@
                                         </a>
                                         @endcan
                                       </li>
+                                      <li class="nav-item">
+                                    @can('stores.show')
+                                    <a href="{{ route('stores.show',  $store->id) }}" 
+                                    class="btn btn-sm btn-success pull-right">
+                                        Todas las planillas
+                                    </a>
+                                    @endcan
+                                  </li>
                                   
                                 </ul>
                         </nav>
@@ -27,7 +35,7 @@
 
                 
                 <div class="panel-body">                    
-                    {{ Form::open(['route' => ['solidwastes.store', $store->id]]) }}
+                    {{ Form::open(['route' => ['solidwastes.store', $store->id], 'files'  => 'true','method' => 'POST']) }}
 
                         @include('solidwastes.partials.form')
                         

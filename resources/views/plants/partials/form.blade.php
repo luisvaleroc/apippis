@@ -63,7 +63,7 @@
 </div>
 
 <div class="form-group">
-{!! Form::label('image', 'Imagen') !!}
+{!! Form::label('photo', 'Tomar Foto') !!}
     {!! Form::file('photo', ['capture' => 'camera']) !!}
 </div>
 

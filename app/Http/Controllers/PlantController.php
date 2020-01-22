@@ -122,9 +122,10 @@ class PlantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( Store $store, Plant $plant)
     {
-        //
+        return view('plants.show', compact('store', 'plant'));
+
     }
 
     /**
@@ -150,9 +151,23 @@ class PlantController extends Controller
      */
     public function update(Request $request, Store $store, $id)
     {
+
+
         $plant = Plant::find($id);
+
+
+        $plant->fill($request->except('photo'));
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $name = time().$file->getClientOriginalName();
+            $plant->photo = $name;
+            $file->move(public_path().'/images/', $name);
+        }
+        $plant->save();
+
+
         $store = $plant->room->store;
-        $plant->update($request->all());
+       // $plant->update($request->all());
         return redirect()->route('plants.edit', [$store->id, $plant->id] )
         ->with('status', 'Guardada con éxito');
 

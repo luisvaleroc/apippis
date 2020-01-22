@@ -25,7 +25,15 @@
                                         </a>
                                         @endcan
                                       </li>
-                                  
+
+                                   <li class="nav-item">
+                                    @can('stores.show')
+                                    <a href="{{ route('stores.show',  $store->id) }}" 
+                                    class="btn btn-sm btn-success pull-right">
+                                        Todas las planillas
+                                    </a>
+                                    @endcan
+                                  </li>
                                 </ul>
                         </nav>
                                
@@ -35,7 +43,7 @@
                  
                 <div class="panel-body">                    
                     {!! Form::model($cleaning, ['route' => ['cleanings.update', $cleaning->id],
-                    'method' => 'PUT']) !!}
+                    'method' => 'PUT', 'files'  => 'true']) !!}
 
                         @include('cleanings.partials.form')
                         
