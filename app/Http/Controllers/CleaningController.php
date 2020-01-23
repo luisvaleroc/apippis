@@ -64,7 +64,7 @@ class CleaningController extends Controller
             'hair' => 'required',
             'nail' => 'required',
             'uniform' => 'required',
-            'rut' => 'required|exists:Employees',
+            'rut' => 'required|exists:employees',
             
             
         ]);
@@ -142,7 +142,20 @@ class CleaningController extends Controller
     public function update(Request $request, $id)
     {
 
-
+        $validateData = $request->validate([
+            'mask' => 'required',
+            'wound' => 'required',
+            'makeup' => 'required',
+            'jewelry' => 'required',
+            'ear' => 'required',
+            'shoe' => 'required',
+            'hair' => 'required',
+            'nail' => 'required',
+            'uniform' => 'required',
+            'rut' => 'required|exists:employees',
+            
+            
+        ]);
 
         $cleaning = Cleaning::find($id);
 
