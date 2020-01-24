@@ -33,6 +33,16 @@
                             
                         {{ Form::close() }} -->
 
+
+     {{ Form::open(['route' => array('cleanings.pdf', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'cleaning' => 'Fecha']) }}
+                    <div class="form-group mx-sm-3 mb-2">
+                            {{ Form::month('name', null, ['placeholder' => 'Iprimir Fecha','class' => 'form-control', 'id' => 'name']) }}
+
+                    </div>
+                          <button type="submit" class="btn btn-primary mb-2">Imprimir Fecha</button> 
+                            
+                        {{ Form::close() }}
+
                         
                   </nav>
 
