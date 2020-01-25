@@ -99,6 +99,8 @@ class PdfController extends Controller
 
        $pdf = PDF::loadView('pdfs.cleanings', ['cleanings' => $cleanings]);
 
+       PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+
 return $pdf->download('invoice.pdf');
 
 

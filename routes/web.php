@@ -238,9 +238,13 @@ Route::get('stores/{store}/lol', 'PdfController@pdfCleaningDay')->name('cleaning
 
 
 Route::get('/', function () {
-
 	$pdf = App::make('dompdf.wrapper');
-	$pdf->loadHTML('<h1>Test</h1>');
+
+	$pdf = PDF::loadView('welcome');
+
+
+//return $pdf->download('invoice.pdf');
+	//$pdf->loadHTML('<h1>Test</h1>');
 	return $pdf->stream();
 
 
