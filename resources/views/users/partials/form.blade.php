@@ -13,6 +13,8 @@
 		<option value='{{$brand->id}}'>{{ $brand->name}}</option> 
 		@endforeach
     </select>
+
+
 <hr>
 <h3>Lista de roles</h3>
 <div class="form-group">

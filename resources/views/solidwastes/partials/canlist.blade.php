@@ -1,7 +1,7 @@
-<div class="row">
-<td width="10px">
-@can('solidwastes.show')
 
+<td >
+<div class="row">
+@can('solidwastes.show')
     <a href="{{ route('solidwastes.show', [$store->id, $solidwaste->id]) }}" 
     class="btn btn-sm btn-default"title="Ver" >
     <span class="icofont-eye-alt btn btn-sm btn-default"></span>  
@@ -10,7 +10,6 @@
 @can('solidwastes.edit')
     <a href="solidwastes/{{ $solidwaste->id}}/edit" 
     class="button" title="Editar" >
-        
         <span class="icofont-pencil-alt-5 btn btn-sm btn-default"></span>   
     </a>
 @endcan
@@ -18,10 +17,7 @@
     {!! Form::open(['route' => ['solidwastes.destroy', $solidwaste->id], 
     'method' => 'DELETE']) !!}
         <button type="submit" title="Eliminar permanentemente" class="icofont-ui-delete btn btn-sm btn-danger " Onclick="return confirm('¿Seguro desea eliminar este registro?');" >
-            
         </button>
     {!! Form::close() !!}
-
 @endcan
 </td>
-</div>

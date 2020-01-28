@@ -17,8 +17,8 @@ class solidwaste extends Model
 
     public function scopeName($query, $name){
         if (trim($name) != ""){
-        // $query->where('name', "LIKE",  "%$name%");
-        $query->where(\DB::raw("CONCAT(paper, ' ', paperboard)"),  "LIKE", "%$name%" );
+         $query->where('created_at', "LIKE",  "%$name%");
+        //$query->where(\DB::raw("CONCAT(paper, ' ', paperboard)"),  "LIKE", "%$name%" );
         }
      }
 }

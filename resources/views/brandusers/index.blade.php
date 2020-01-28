@@ -40,19 +40,21 @@
                                                 <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
                                                <td>
+                                               <div class="row">
                                                 @can('users.show')
                                             
                                                     <a href="{{ route('brandusers.show', $user->id) }}" 
-                                                    class="btn btn-sm btn-default">
-                                                        ver
+                                                    class="btn btn-sm btn-default" title="Ver usuarios">
+                                                    <span class="icofont-eye-alt btn btn-sm btn-default"></span>  
+
                                                     </a>
                                           
                                                 @endcan
                                                 @can('brandUser.edit')
                                               
                                                     <a href="{{ route('brandusers.edit', $user->id) }}" 
-                                                    class="btn btn-sm btn-default">
-                                                        editar
+                                                    class="btn btn-sm btn-default" title="Editar usuario">
+                                                    <span class="icofont-pencil-alt-5 btn btn-sm btn-default"></span> 
                                                     </a> 
                                              
                                                 @endcan
@@ -60,12 +62,13 @@
                                                
                                                     {!! Form::open(['route' => ['users.destroy', $user->id], 
                                                     'method' => 'DELETE']) !!}
-                                                        <button class="btn btn-sm btn-danger" Onclick="return confirm('Are you sure you want to delete this item?');" >
-                                                            Eliminar
+                                                        <button title="Eliminar usuario" class="icofont-ui-delete btn btn-sm btn-danger " Onclick="return confirm('Are you sure you want to delete this item?');" >
+                                                            
                                                         </button>
                                                     {!! Form::close() !!}
                                                
                                                 @endcan
+                                                </div>
                                                 </td>
                                             </tr>
                                             @endforeach

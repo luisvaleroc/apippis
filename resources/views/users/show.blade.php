@@ -26,14 +26,14 @@
                 <div class="panel-body">                                        
                     <p><strong>Nombre</strong>     {{ $user->name }}</p>
                     <p><strong>Email</strong>      {{ $user->email }}</p>
-                    <p><strong>Email</strong>      {{ $user->email }}</p>
+                    <p><strong>Teleono</strong>      {{ $user->phone }}</p>
                     <p><strong>Empresa</strong>     <a href="{{ route('changebrand.edit', $user->brand->id ) }}" 
                                         class="">
                                         {{ $user->brand->name }}
                                         </a></p>
                     <p><strong>Local</strong>
                     @foreach($user->brand->store as $store)
-                          {{ $store->name }},
+                          {{ $store->name }}.
                             @endforeach
                             </p>
 

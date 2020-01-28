@@ -8,6 +8,13 @@ use App\Store;
 use App\Cleaning;
 use App\Employee;
 use PDF;
+use Carbon\Carbon;
+
+
+use App\Room;
+use App\Plant;
+use Illuminate\Support\Facades\DB;
+
 
 
 use Illuminate\Http\Request;
@@ -90,19 +97,93 @@ class PdfController extends Controller
         //
     }
 
-    public function pdfCleaningDay ( Request $request, Store $store)
+    public function pdfSolidwastegDay ( Request $request, Store $store)
     {
 
        // $store = Store::find($id);
         
-        $cleanings= $store->cleaning()->name($request->get('name'))->orderBy('ID', 'DESC')->get();
+       // $cleanings= $store->cleaning()->name($request->get('name'))->orderBy('ID', 'DESC')->get();
 
-       $pdf = PDF::loadView('pdfs.cleanings', ['cleanings' => $cleanings]);
+       $solidwastes= $store->solidwaste()->name($request->get('name'))->get();
 
-       PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+       $pdf = PDF::loadView('pdfs.solidwastes', ['solidwastes' => $solidwastes]);
 
-return $pdf->download('invoice.pdf');
+      // PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+
+return $pdf->download('Desechossolidos.pdf');
 
 
         }
+
+        public function  pdfPlantMonth ( Request $request, Store $store,  $id)
+    {
+
+        $plantdate = Plant::find($id);
+
+         $month2 =  date('Y-m', strtotime($plantdate->created_at));
+
+       // $store = Store::find($id);
+        
+       // $cleanings= $store->cleaning()->name($request->get('name'))->orderBy('ID', 'DESC')->get();
+
+       $plants = DB::table('stores')
+       ->join('rooms', 'stores.id', '=', 'rooms.store_id')
+       ->join('plants', 'rooms.id', '=', 'plants.room_id')
+       ->select('plants.id', 'rooms.name', 'plants.observation', 'plants.equip1', 'plants.equip2', 'plants.equip3', 'plants.floor', 'plants.wall', 'plants.dump', 'plants.action', 'plants.created_at as created_at')
+       ->where('stores.id', $store->id)
+       ->where('plants.created_at', "LIKE",  "%$month2%")
+       ->orderBy('stores.id', 'desc')
+       ->get();
+       
+
+       $plant2 = DB::table('stores')
+       ->join('rooms', 'stores.id', '=', 'rooms.store_id')
+       ->join('plants', 'rooms.id', '=', 'plants.room_id')
+       ->select('plants.id', 'plants.observation', 'plants.equip1', 'plants.equip2', 'plants.equip3', 'plants.floor', 'plants.wall', 'plants.dump', 'plants.action', 'plants.created_at as created_at')
+       ->where('stores.id', $store->id)
+       ->where('plants.created_at', "LIKE",  "%$month2%")
+       ->orderBy('stores.id', 'desc')
+       ->first();
+
+       $pdf = PDF::loadView('pdfs.plants', ['plants' => $plants], ['plant2' => $plant2] );
+
+      // PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+
+return $pdf->download('Limpiezasanitizacion.pdf');
+
 }
+
+
+public function  pdfCleaningMonth ( Request $request, Store $store,  $id)
+{
+
+    $cleaningdate = Cleaning::find($id);
+
+     $month2 =  date('Y-m', strtotime($cleaningdate->created_at));
+
+
+     $store = Store::find($id);
+        
+     $cleanings= $store->cleaning()->orderBy('ID', 'DESC')
+     ->where('created_at', "LIKE",  "%$month2%")
+     ->get();
+
+   // $store = Store::find($id);
+    
+   // $cleanings= $store->cleaning()->name($request->get('name'))->orderBy('ID', 'DESC')->get();
+
+   
+
+   $pdf = PDF::loadView('pdfs.cleanings', ['cleanings' => $cleanings] );
+
+  // PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+
+return $pdf->download('Limpiezasanitizacion.pdf');
+
+
+}
+}
+
+
+
+

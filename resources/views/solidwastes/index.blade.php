@@ -34,14 +34,14 @@
                         {{ Form::close() }} -->
 
 
-     {{ Form::open(['route' => array('cleanings.pdf', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'cleaning' => 'Fecha']) }}
+     <!-- {{ Form::open(['route' => array('solidwastes.pdf', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'cleaning' => 'Fecha']) }}
                     <div class="form-group mx-sm-3 mb-2">
                             {{ Form::month('name', null, ['placeholder' => 'Iprimir Fecha','class' => 'form-control', 'id' => 'name']) }}
 
                     </div>
                           <button type="submit" class="btn btn-primary mb-2">Imprimir Fecha</button> 
                             
-                        {{ Form::close() }}
+                        {{ Form::close() }} -->
 
                         
                   </nav>
@@ -62,6 +62,7 @@
                                 <th>Total (Kg)</th>
                                 <th>Observación</th>
                                 <th>Acciones (Kg)</th>
+                                <th>Descargar</th>
             </tr>
         </thead>
         <tbody>
@@ -79,6 +80,23 @@
                                 <td>{{ $solidwaste->paper + $solidwaste->paperboard + $solidwaste->plastic + $solidwaste->pvc + $solidwaste->scrap + $solidwaste->glass + $solidwaste->food + $solidwaste->ordinary   }}</td>
                                 <td>{{ $solidwaste->observation }}</td>
                                 @include('solidwastes.partials.canlist')
+                                <td>
+                                <div class="row">
+                                
+                                {{ Form::open(['route' => array('solidwastes.pdf', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'solidwaste' => 'Fecha']) }}
+                    <input id="name" name="name" type="hidden" value="{{  $solidwaste->created_at->format('Y-m')  }}">
+
+                    <button type="submit" title="Descargar registros de este mes en formato pdf" class="icofont-file-pdf  btn btn-sm btn-success"  style="margin-left: 10px">
+        </button>                            
+                        {{ Form::close() }}
+
+
+                        <a href="{{ route('solidwastes.excel', [$store->id, $solidwaste->id]) }}" 
+    class="btn btn-sm btn-default" title="Descargar registros de este mes en formato excel">
+    <span class="icofont-file-excel  btn btn-sm btn-success"></span>  
+    </a>
+                        </div>
+</td>
 
                             </tr>
                             @endforeach
@@ -99,6 +117,7 @@
                                 <th>Total (Kg)</th>
                                 <th>Observación</th>
                                 <th>Acciones</th>
+                                <th>Descargar</th>
 
             </tr>
         </tfoot>
@@ -111,7 +130,7 @@
     var table = $('#example').DataTable( {
         
 
-
+      
 
         
         rowReorder: {

@@ -231,21 +231,32 @@ Route::get('brand/users/{user}', 'UserController@brandUsershow')->name('branduse
 
 });
 
+//pdf
+Route::get('stores/{store}/pdf/solidwastes', 'PdfController@pdfSolidwastegDay')->name('solidwastes.pdf');
+Route::get('stores/{store}/pdf/plants/{month}', 'PdfController@pdfPlantMonth')->name('plants.pdf');
+Route::get('stores/{store}/pdf/cleanings/{month}', 'PdfController@pdfCleaningMonth')->name('cleanings.pdf');
 
-Route::get('stores/{store}/lol', 'PdfController@pdfCleaningDay')->name('cleanings.pdf');
+
 	
+//excel
+Route::get('stores/{store}/excel/solidwastes/{solidwaste}', 'ExcelController@solidwaste')->name('solidwastes.excel');
+
+Route::get('stores/{store}/excel/plants/{month}', 'ExcelController@plants')->name('plants.excel')->middleware('permission:plants.exel');
+Route::get('stores/{store}/excel/cleanings/{month}', 'ExcelController@plants')->name('plants.excel')->middleware('permission:plants.exel');
 
 
 
-Route::get('/', function () {
-	$pdf = App::make('dompdf.wrapper');
 
-	$pdf = PDF::loadView('welcome');
+
+// Route::get('/', function () {
+// 	$pdf = App::make('dompdf.wrapper');
+
+// 	$pdf = PDF::loadView('welcome');
 
 
 //return $pdf->download('invoice.pdf');
 	//$pdf->loadHTML('<h1>Test</h1>');
-	return $pdf->stream();
+// 	return $pdf->stream();
 
 
-});
+// });

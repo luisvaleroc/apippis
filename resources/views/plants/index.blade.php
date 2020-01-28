@@ -66,6 +66,7 @@
                                 <th>Acción correctiva</th>
                                 <th>Observación</th>
                                 <th>Acciones</th>
+                                <th>Descargar</th>
                               
 
                             </tr>
@@ -87,6 +88,25 @@
                                 <td>{{ $plant->observation }}</td>
                            
                                 <td>   @include('plants.partials.canlist')</td>
+
+                                <td>
+                                
+                                
+                                
+                                <a href="{{ route('plants.pdf', [$store->id, $plant->id]) }}" 
+    class="btn btn-sm btn-default" title="Descargar registros de este mes en formato pdf">
+    <span class="icofont-file-pdf  btn btn-sm btn-success"></span>  
+    </a>
+    
+
+                        <a href="{{ route('plants.excel', [$store->id, $plant->id]) }}" 
+    class="btn btn-sm btn-default" title="Descargar registros de este mes en formato excel">
+    <span class="icofont-file-excel  btn btn-sm btn-success"></span>  
+    </a>
+    
+                                
+                                
+                                </td>
                    
                             </tr>
                             @endforeach
@@ -103,6 +123,7 @@
                                 <th>Acción correctiva</th>
                                 <th>Observación</th>
                                 <th>Acciones</th>
+                                <th>Descargar</th>
             </tr>
         </tfoot>
 
