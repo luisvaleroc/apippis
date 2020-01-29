@@ -234,7 +234,7 @@ Route::get('brand/users/{user}', 'UserController@brandUsershow')->name('branduse
 //pdf
 Route::get('stores/{store}/pdf/solidwastes', 'PdfController@pdfSolidwastegDay')->name('solidwastes.pdf');
 Route::get('stores/{store}/pdf/plants/{month}', 'PdfController@pdfPlantMonth')->name('plants.pdf');
-Route::get('stores/{store}/pdf/cleanings/{month}', 'PdfController@pdfCleaningMonth')->name('cleanings.pdf');
+Route::get('stores/{store}/pdf/cleanings/{cleaning}', 'PdfController@pdfCleaningMonth')->name('cleanings.pdf');
 
 
 	
@@ -242,7 +242,7 @@ Route::get('stores/{store}/pdf/cleanings/{month}', 'PdfController@pdfCleaningMon
 Route::get('stores/{store}/excel/solidwastes/{solidwaste}', 'ExcelController@solidwaste')->name('solidwastes.excel');
 
 Route::get('stores/{store}/excel/plants/{month}', 'ExcelController@plants')->name('plants.excel')->middleware('permission:plants.exel');
-Route::get('stores/{store}/excel/cleanings/{month}', 'ExcelController@plants')->name('plants.excel')->middleware('permission:plants.exel');
+Route::get('stores/{store}/excel/cleanings/{cleaning}', 'ExcelController@cleanings')->name('cleanings.excel')->middleware('permission:cleanings.exel');
 
 
 

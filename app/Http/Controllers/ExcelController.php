@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 use  App\Store;
 use  App\Solidwaste;
 use  App\Plant;
+use  App\Cleaning;
+
 
 
 
 use App\Exports\SolidwastesExport;
 use App\Exports\PlantsExport;
+use App\Exports\CleaningsExport;
+
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -81,6 +85,27 @@ class ExcelController extends Controller
         
        
       return Excel::download(new PlantsExport($plants), 'plants.xlsx');
+    }
+
+
+
+    public function cleanings( store $store, Cleaning $cleaning) 
+    {
+
+
+      //$cleaningdate = Cleaning::find($id);
+
+      $month2 =  date('Y-m-d', strtotime($cleaning->created_at));
+ 
+ 
+      $store = Store::find($store ->id);
+      $cleanings= $store->cleaning() 
+      ->where('created_at', "LIKE",  "%$month2%")
+      ->orderBy('ID', 'DESC')
+      ->get();
+
+       
+      return Excel::download(new CleaningsExport($cleanings), 'cleanings.xlsx');
     }
 
 }

@@ -10,7 +10,7 @@
                 </div>
                
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                    <a class="navbar-cleaning" href="#">Salud e hiene personal</a>
+                    <a class="navbar-cleaning" href="#">Salud e higiene personal</a>
                     <ul class="nav nav-pills">
                       <li class="nav-item">
                         @can('cleanings.create')
@@ -40,17 +40,7 @@
                             
                         {{ Form::close() }} -->
 
-                          {{ Form::open(['route' => array('cleanings.pdf', $store->id), 'method' => 'GET', 'class' => 'form-inline', 'cleaning' => 'Fecha']) }}
-                    <div class="form-group mx-sm-3 mb-2">
-                            {{ Form::date('name', null, ['placeholder' => 'Iprimir Fecha','class' => 'form-control', 'id' => 'name']) }}
-
-                    </div>
-                          <button type="submit" class="btn btn-primary mb-2">Imprimir Fecha</button> 
-                            
-                        {{ Form::close() }}
-
-                        
-</form>
+                   
                   </nav>
 
         
@@ -80,6 +70,7 @@
                                 <th>Observacón</th>                          
 
                                 <th>Acciones</th>
+                                <th>Descargar</th>  
                             </tr>
                         </thead>
                         <tbody>
@@ -102,6 +93,21 @@
                                 
                             
                              <td>   @include('cleanings.partials.canlist')</td>
+                             <td>
+                             <div class="row">
+                                
+                             <a href="{{ route('cleanings.pdf', [$store->id, $cleaning->id]) }}" 
+    class="btn btn-sm btn-default" title="Descargar registros de este mes en formato pdf">
+    <span class="icofont-file-excel  btn btn-sm btn-success"></span>  
+    </a>
+
+
+                        <a href="{{ route('cleanings.excel', [$store->id, $cleaning->id]) }}" 
+    class="btn btn-sm btn-default" title="Descargar registros de este mes en formato excel">
+    <span class="icofont-file-excel  btn btn-sm btn-success"></span>  
+    </a>
+                        </div>
+                             </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -122,6 +128,7 @@
                                 <th>Observacón</th>                          
 
                                 <th>Acciones</th>
+                                <th>Descargar</th> 
             </tr>
         </tfoot>
                     </table>

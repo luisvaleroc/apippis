@@ -154,19 +154,27 @@ return $pdf->download('Limpiezasanitizacion.pdf');
 }
 
 
-public function  pdfCleaningMonth ( Request $request, Store $store,  $id)
+public function  pdfCleaningMonth ( Request $request, Store $store, $id)
 {
 
     $cleaningdate = Cleaning::find($id);
 
-     $month2 =  date('Y-m', strtotime($cleaningdate->created_at));
+     $month2 =  date('Y-m-d', strtotime($cleaningdate->created_at));
 
 
-     $store = Store::find($id);
-        
-     $cleanings= $store->cleaning()->orderBy('ID', 'DESC')
+     $store = Store::find($store ->id);
+     $cleanings= $store->cleaning() 
      ->where('created_at', "LIKE",  "%$month2%")
+     ->orderBy('ID', 'DESC')
      ->get();
+     $cleaning2= $store->cleaning() 
+     ->where('created_at', "LIKE",  "%$month2%")
+     ->orderBy('ID', 'DESC')
+     ->first();
+
+    // $cleanings= $store->Cleaning()->orderBy('ID', 'DESC')
+    // ->where('created_at', "LIKE",  "%$month2%")
+    // ->get();
 
    // $store = Store::find($id);
     
@@ -174,11 +182,11 @@ public function  pdfCleaningMonth ( Request $request, Store $store,  $id)
 
    
 
-   $pdf = PDF::loadView('pdfs.cleanings', ['cleanings' => $cleanings] );
+   $pdf = PDF::loadView('pdfs.cleanings', ['cleanings' => $cleanings], ['cleaning2' => $cleaning2] );
 
   // PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
 
-return $pdf->download('Limpiezasanitizacion.pdf');
+return $pdf->download('Saludehigienepersonal.pdf');
 
 
 }
