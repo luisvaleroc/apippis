@@ -62,8 +62,9 @@
                       <li class="nav-item">
                         <a class="nav-link" href="{{ route('stores.index') }}">Locales</a>
                       </li>
-                      
+                      @can('users.create')
                       <li class="nav-item dropdown">
+                    
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Administración
                         </a>
@@ -72,6 +73,7 @@
                          <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
                           <a class="dropdown-item" href="{{ route('brands.index') }}">Empresas</a>
                           <div class="dropdown-divider"></div>
+                          @endcan
                         </div> 
                     </div>
 
@@ -91,11 +93,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a>
                                 </li>
                             @endif
                         @else

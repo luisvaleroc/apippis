@@ -92,8 +92,8 @@ class PermissionsTableSeeder extends Seeder
         ]);
         
         Permission::create([
-            'name'          => 'Eliminar roles',
-            'slug'          => 'roles.destroy',
+            'name'          => 'Eliminar local',
+            'slug'          => 'stores.destroy',
             'description'   => 'Podría eliminar cualquier rol del sistema',      
         ]);
 
@@ -123,40 +123,40 @@ class PermissionsTableSeeder extends Seeder
         ]);
         
         Permission::create([
-            'name'          => 'Eliminar roles',
-            'slug'          => 'roles.destroy',
+            'name'          => 'Eliminar empresa',
+            'slug'          => 'brands.destroy',
             'description'   => 'Podría eliminar cualquier rol del sistema',      
         ]);
 
-            //brands
-            Permission::create([
-                'name'          => 'Navegar Emoresa',
-                'slug'          => 'brands.index',
-                'description'   => 'Lista y navega todos las empresas del sistema',
-            ]);
-            Permission::create([
-                'name'          => 'Ver detalle de una empresa',
-                'slug'          => 'brands.show',
-                'description'   => 'Ve en detalle cada local del sistema',            
-            ]);
+            // //brands
+            // Permission::create([
+            //     'name'          => 'Navegar Emoresa',
+            //     'slug'          => 'brands.index',
+            //     'description'   => 'Lista y navega todos las empresas del sistema',
+            // ]);
+            // Permission::create([
+            //     'name'          => 'Ver detalle de una empresa',
+            //     'slug'          => 'brands.show',
+            //     'description'   => 'Ve en detalle cada local del sistema',            
+            // ]);
             
-            Permission::create([
-                'name'          => 'Creación de una empresa',
-                'slug'          => 'brands.create',
-                'description'   => 'Podría crear nuevas empresas en el sistema',
-            ]);
+            // Permission::create([
+            //     'name'          => 'Creación de una empresa',
+            //     'slug'          => 'brands.create',
+            //     'description'   => 'Podría crear nuevas empresas en el sistema',
+            // ]);
             
-            Permission::create([
-                'name'          => 'Edición de empresa',
-                'slug'          => 'brands.edit',
-                'description'   => 'Podría editar cualquier dato de una empresa del sistema',
-            ]);
+            // Permission::create([
+            //     'name'          => 'Edición de empresa',
+            //     'slug'          => 'brands.edit',
+            //     'description'   => 'Podría editar cualquier dato de una empresa del sistema',
+            // ]);
             
-            Permission::create([
-                'name'          => 'Eliminar roles',
-                'slug'          => 'roles.destroy',
-                'description'   => 'Podría eliminar cualquier rol del sistema',      
-            ]);
+            // Permission::create([
+            //     'name'          => 'Eliminar roles',
+            //     'slug'          => 'brands.destroy',
+            //     'description'   => 'Podría eliminar cualquier rol del sistema',      
+            // ]);
 
              //rooms
              Permission::create([

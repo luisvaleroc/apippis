@@ -9,14 +9,14 @@
                     <nav id="navbar-central" class="navbar navbar-light bg-light">
                             <a class="navbar-store" href="#">Local</a>
                             <ul class="nav nav-pills">
-                              <li class="nav-item">
+                              <!-- <li class="nav-item">
                                 @can('stores.create')
                                 <a href="{{ route('stores.create') }}" 
                                 class="btn btn-sm btn-primary pull-right">
                                     Crear
                                 </a>
                                 @endcan
-                              </li>
+                              </li> -->
                               <!-- <li class="nav-item">
                                     @can('stores.create')
                                     <a href="{{ route('stores.index') }}" 
