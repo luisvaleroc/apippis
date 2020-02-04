@@ -10,7 +10,7 @@
                                 <a class="navbar-store" href="#">Desechos solidos</a>
                                 <ul class="nav nav-pills">
                                   <li class="nav-item">
-                                    @can('stores.create')
+                                    @can('solidwastes.create')
                                     <a href="{{ route('solidwastes.create', $store->id)}}" 
                                     class="btn btn-sm btn-primary pull-right">
                                         Crear
@@ -18,7 +18,7 @@
                                     @endcan
                                   </li>
                                   <li class="nav-item">
-                                        @can('stores.create')
+                                        @can('solidwastes.index')
                                         <a href="{{ route('solidwastes.index', $store->id)}}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Ver

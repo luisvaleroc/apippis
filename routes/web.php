@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -104,12 +102,12 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 	
 	Route::get('store/{store}/solidwastes/{solidwaste}', 'SolidwasteController@show')->name('solidwastes.show')
 		->middleware('permission:solidwastes.show');
-		Route::put('solidwastes/{brand}', 'SolidwasteController@update')->name('solidwastes.update')
-		->middleware('permission:solidwastes.update');
+		Route::put('solidwastes/{solidwaste}', 'SolidwasteController@update')->name('solidwastes.update')
+		->middleware('permission:solidwastes.edit');
 	Route::delete('solidwastes/{solidwaste}', 'SolidwasteController@destroy')->name('solidwastes.destroy')
 		->middleware('permission:solidwastes.destroy');
 	Route::get('stores/{store}/solidwastes/{solidwaste}/edit', 'SolidwasteController@edit')->name('solidwastes.edit')
-		->middleware('permission:brands.edit');
+		->middleware('permission:solidwastes.edit');
 	
 
 
@@ -130,7 +128,7 @@ Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
 	Route::delete('employees/{employee}', 'EmployeeController@destroy')->name('employees.destroy')
 		->middleware('permission:employees.destroy');
 	Route::get('stores/{store}/employees/{employee}/edit', 'EmployeeController@edit')->name('employees.edit')
-		->middleware('permission:brands.edit');
+		->middleware('permission:employees.edit');
 
 
 
@@ -197,7 +195,7 @@ Route::get('brand/users', 'UserController@BrandUser')->name('brandusers.index')
 
 
 Route::put('brand/users/{user}', 'UserController@brandUserUpdate')->name('brandusers.update')
-->middleware('permission:brandusers.update');
+->middleware('permission:brandusers.edit');
 
 Route::get('brand/users/{user}/edit', 'UserController@brandUserEdit')->name('brandusers.edit')
 ->middleware('permission:brandusers.edit');
@@ -226,7 +224,9 @@ Route::get('brand/users/{user}', 'UserController@brandUsershow')->name('branduse
 // ->middleware('permission:StoreBrand.index');
 
 
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 });
@@ -241,8 +241,8 @@ Route::get('stores/{store}/pdf/cleanings/{cleaning}', 'PdfController@pdfCleaning
 //excel
 Route::get('stores/{store}/excel/solidwastes/{solidwaste}', 'ExcelController@solidwaste')->name('solidwastes.excel');
 
-Route::get('stores/{store}/excel/plants/{month}', 'ExcelController@plants')->name('plants.excel')->middleware('permission:plants.exel');
-Route::get('stores/{store}/excel/cleanings/{cleaning}', 'ExcelController@cleanings')->name('cleanings.excel')->middleware('permission:cleanings.exel');
+Route::get('stores/{store}/excel/plants/{month}', 'ExcelController@plants')->name('plants.excel');
+Route::get('stores/{store}/excel/cleanings/{cleaning}', 'ExcelController@cleanings')->name('cleanings.excel');
 
 
 
@@ -260,3 +260,4 @@ Route::get('stores/{store}/excel/cleanings/{cleaning}', 'ExcelController@cleanin
 
 
 // });
+

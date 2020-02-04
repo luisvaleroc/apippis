@@ -11,21 +11,29 @@
                                 <ul class="nav nav-pills">
                                   <li class="nav-item">
                                     @can('employees.create')
-                                    <a href="{{ route('employees.create', $employee->id)}}" 
+                                    <a href="{{ route('employees.create', $store->id)}}" 
                                     class="btn btn-sm btn-primary pull-right">
                                         Crear
                                     </a>
                                     @endcan
                                   </li>
                                   <li class="nav-item">
-                                        @can('employees.create')
-                                        <a href="{{ route('employees.index', $employee->id)}}" 
+                                        @can('employees.index')
+                                        <a href="{{ route('employees.index', $store->id)}}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Ver
                                         </a>
                                         @endcan
                                       </li>
-                                  
+                                      <li class="nav-item">
+                                    @can('stores.show')
+                                    <a href="{{ route('stores.show',  $store->id) }}" 
+                                    class="btn btn-sm btn-success pull-right">
+                                        Todas las planillas
+                                    </a>
+                                    @endcan
+                                  </li>
+                      
                                 </ul>
                         </nav>
                                

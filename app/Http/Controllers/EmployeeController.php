@@ -19,7 +19,8 @@ class EmployeeController extends Controller
     public function index(Request $request, $id)
     {
         $store = Store::find($id);
-        
+        $this->authorize('pass', $store);
+
         $employees= $store->employee()->name($request->get('name'))->paginate();
 
      
@@ -34,6 +35,7 @@ class EmployeeController extends Controller
     public function create($id)
     {
         $store = Store::find($id);
+        $this->authorize('pass', $store);
 
         
         return view('employees.create', compact('store'));
@@ -77,8 +79,10 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Store $store, Employee $employee)
-    {
-        
+    {       
+
+        $this->authorize('pass', $store);
+
         //$store = Solidwaste::find($id);
         return view('employees.edit', compact('employee', 'store'));
 

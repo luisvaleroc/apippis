@@ -3,6 +3,9 @@
 namespace App\Policies;
 
 use App\User;
+use App\Store;
+
+
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class StorePolicy
@@ -17,5 +20,10 @@ class StorePolicy
     public function __construct()
     {
         //
+    }
+
+    public function pass(User $user, Store $store)
+    {
+        return $user->brand_id == $store->brand_id; 
     }
 }

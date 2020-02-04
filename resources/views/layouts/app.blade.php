@@ -59,9 +59,11 @@
                       <li class="nav-item">
                         <a class="nav-link" href="{{ route('roles.index') }}">roles</a>
                       </li> -->
+                      @can('stores.create')
                       <li class="nav-item">
                         <a class="nav-link" href="{{ route('stores.index') }}">Locales</a>
                       </li>
+                      @endcan
                       @can('users.create')
                       <li class="nav-item dropdown">
                     

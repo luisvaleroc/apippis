@@ -17,37 +17,37 @@
         .letracuerpo {
             font-size: 8px;
         }
+        .margen{
+            margin-left: -30px;
+        }
         </style>
 </head>
 <body>
+    <div class="">
 <div class="row text-center">
-        <!-- <div class="col-sm-4 text-left">
-            <img src="https://i.imgur.com/V9aNqqM.jpg" alt="" width="140px">
-        </div> -->
-        <div class="col-sm-8 font-weight-bold text-right text-center">Monitoreo de control
+        
+        <div class="col-sm-12 font-weight-bold">Monitoreo de control
             <br>salud e higiene del
             <br>personal
         </div>
-        
+       
+        <br>
+        <br>
+        <br>
 
 
     </div>
-    <!-- <div class="row">
-    <div class="col-sm-6 font-weight-bold letratitulo text-center ">Codigo: </div>
-            <div class="col-sm-6 font-weight-bold letratitulo text-right ">Revisión N°</div>
-            
-        </div> -->
+    
     <div class="row">
-        <div class="col-sm-6 text-right font-weight-bold letratitulo">Fecha:{{ $cleaning2->created_at->format('d-m-Y') }}
-</div>
-        <!-- <div class="col-sm-6 font-weight-bold letratitulo">Hora:</div> -->
+        <div class="col-sm-12 text-right font-weight-bold letratitulo">Fecha: {{ $cleaning2->created_at->format('d-m-Y') }}</div>
+        
         <!-- <div class="col s4">Área/sección:</div> -->
 
     </div>
 
     
 
-    <table class="table">
+    <table class="table margen">
         <thead>
           
             <tr class=" text-center ">
@@ -90,12 +90,10 @@
         <div class="col-sm-6 font-weight-bold letratitulo text-right">Nombre y firma verificador:</div>
 
     </div>
-
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
 </html>
-
-

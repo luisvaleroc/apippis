@@ -20,7 +20,8 @@ class RoomController extends Controller
     public function index(Request $request, $id)
     {
         $store = Store::find($id);
-        
+        $this->authorize('pass', $store);
+
         $rooms= $store->room()->name($request->get('name'))->paginate();
 
      
@@ -35,6 +36,7 @@ class RoomController extends Controller
     public function create($id)
     {
         $store = Store::find($id);
+        $this->authorize('pass', $store);
 
         
         return view('rooms.create', compact('store'));
@@ -85,6 +87,8 @@ class RoomController extends Controller
      */
     public function edit(Store $store, $id)
     {
+        $this->authorize('pass', $store);
+
         $room = Room::find($id);
         return view('rooms.edit', compact('room', 'store'));
     }

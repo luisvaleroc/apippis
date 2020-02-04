@@ -11,7 +11,7 @@
                                 <ul class="nav nav-pills">
                                
                                   <li class="nav-item">
-                                        @can('stores.index')
+                                        @can('cleanings.index')
                                         <a href="{{ route('cleanings.index', $store->id) }}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Ver

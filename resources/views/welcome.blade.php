@@ -68,7 +68,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <!-- <a href="{{ url('/home') }}">Home</a> -->
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -81,19 +81,30 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                <img src="{{ asset('img/logo-2.png') }}" alt="..." width="120" class="img-rounded">
+
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    @can('brands.create')
+                    <a href="{{ route('brands.index') }}">Administración</a>
+                    @endcan
+                    @can('stores.create')
+                    <a href="{{ route('stores.index') }}">Locales</a>
+                    @endcan
+                   @if(auth()->user()->store != null)
+
+                    @can('stores.show')
+                    <a href="{{ route('stores.show', auth()->user()->store->id) }}">Planillas</a>
+                    @endcan
+                    @endif
+                    <a href="https://ppis.cl">Web</a>
+             
+                    
                 </div>
             </div>
         </div>
     </body>
 </html>
+
+

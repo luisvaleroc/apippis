@@ -14,6 +14,12 @@
 		@endforeach
     </select>
 
+	<h3>¿El Usuario es dueño?</h3>
+<div class="form-group">
+ 	<label>{{ Form::radio('owner', 'si') }} Si</label>
+ 	<label>{{ Form::radio('owner', ' ') }} No</label>
+</div>
+
 
 <hr>
 <h3>Lista de roles</h3>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +17,9 @@
         .letracuerpo {
             font-size: 12px;
         }
+        .margen{
+            margin-left: -15px;
+        }
         </style>
 </head>
 <body>
@@ -27,7 +29,7 @@
 
     
     
-<table class="table ">
+<table class="table margen">
         <thead class="letratitulo">
             <tr class="text-center">
 
@@ -52,10 +54,10 @@
 
         </thead>
         <tbody class="letracuerpo">
-        @foreach($solidwastes as $solidwaste)
 
+        @foreach($solidwastes as $solidwaste)
             <tr class="text-center">
-                <td colspan="1">{{ $solidwaste->created_at->format('d-m-Y') }}</td>
+            <td colspan="1">{{ $solidwaste->created_at->format('d-m-Y') }}</td>
                 <td colspan="1">{{ $solidwaste->paper }}</td>
                 <td colspan="1">{{ $solidwaste->paperboard }}</td>
                 <td colspan="1">{{ $solidwaste->plastic }}</td>
@@ -66,13 +68,16 @@
                 <td colspan="2">{{ $solidwaste->ordinary }}</td>
                 <td colspan="1">{{ $solidwaste->paper + $solidwaste->paperboard + $solidwaste->plastic + $solidwaste->pvc + $solidwaste->scrap + $solidwaste->glass + $solidwaste->food + $solidwaste->ordinary   }}</td>
             </tr>
-            @endforeach
+        @endforeach
+
         </tbody>
 
 
     </table>
+    <div class="row">
+        <div class="col-sm-6 font-weight-bold letratitulo text-left">Nombre y firma monitor:</div>
+        <div class="col-sm-6 font-weight-bold letratitulo text-right">Nombre y firma verificador:</div>
+
+    </div>
 </body>
 </html>
-
-
-                    

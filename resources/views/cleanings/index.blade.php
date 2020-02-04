@@ -94,7 +94,7 @@
                             
                              <td>   @include('cleanings.partials.canlist')</td>
                              <td>
-                             <div class="row">
+                      
                                 
                              <a href="{{ route('cleanings.pdf', [$store->id, $cleaning->id]) }}" 
     class="btn btn-sm btn-default" title="Descargar registros de este mes en formato pdf">
@@ -106,7 +106,7 @@
     class="btn btn-sm btn-default" title="Descargar registros de este mes en formato excel">
     <span class="icofont-file-excel  btn btn-sm btn-success"></span>  
     </a>
-                        </div>
+                       
                              </td>
                             </tr>
                             @endforeach

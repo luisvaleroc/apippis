@@ -98,6 +98,7 @@ class StoreController extends Controller
     {
         //return response()->json($store, 200);
         $store = Store::find($id);
+        $this->authorize('pass', $store);
         return view('stores.show', compact('store'));
     }
 

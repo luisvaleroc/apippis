@@ -21,6 +21,8 @@ class SolidwasteController extends Controller
     public function index( $id)
     {
         $store = Store::find($id);
+        $this->authorize('pass', $store);
+
         
        // $solidwastes= $store->solidwaste()->name($request->get('name'))->paginate();
        $solidwastes= $store->solidwaste()->orderBy('ID', 'DESC')->get();
@@ -42,6 +44,7 @@ class SolidwasteController extends Controller
     public function create($id)
     {
         $store = Store::find($id);
+        $this->authorize('pass', $store);
 
         
         return view('solidwastes.create', compact('store'));
@@ -138,6 +141,8 @@ class SolidwasteController extends Controller
      */
     public function show(Store $store, Solidwaste $solidwaste)
     {
+        $this->authorize('pass', $store);
+
         return view('solidwastes.show', compact('store', 'solidwaste'));
     }
 
@@ -149,6 +154,8 @@ class SolidwasteController extends Controller
      */
     public function edit( Store $store,  solidwaste $solidwaste)
     {
+        $this->authorize('pass', $store);
+
         //$store = Solidwaste::find($id);
         return view('solidwastes.edit', compact('solidwaste', 'store'));
     }

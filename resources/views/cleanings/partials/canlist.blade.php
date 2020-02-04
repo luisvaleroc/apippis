@@ -11,7 +11,7 @@
     <a href="cleanings/{{ $cleaning->id}}/edit" 
     class="btn btn-sm btn-default" title="Editar registro">
     <span class="icofont-pencil-alt-5 btn btn-sm btn-default"></span>    </a>
-    </a>
+   
 @endcan
 @can('cleanings.destroy')
     {!! Form::open(['route' => ['cleanings.destroy', $cleaning->id], 

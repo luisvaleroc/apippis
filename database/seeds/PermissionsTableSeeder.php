@@ -214,8 +214,8 @@ class PermissionsTableSeeder extends Seeder
             ]);
             
             Permission::create([
-                'name'          => 'Eliminar empleado',
-                'slug'          => 'employees.destroy',
+                'name'          => 'Actualizar empleado',
+                'slug'          => 'employees.update',
                 'description'   => 'Podría eliminar cualquier empleado del sistema',      
             ]);
 

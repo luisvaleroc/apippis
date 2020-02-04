@@ -21,10 +21,8 @@
 </head>
 <body>
 <div class="row text-center">
-        <div class="col-sm-4 text-left">
-            <img src="https://i.imgur.com/V9aNqqM.jpg" alt="" width="140px">
-        </div>
-        <div class="col-sm-8 font-weight-bold text-right">Registro monitoreo 
+       
+        <div class="col-sm-12 font-weight-bold text-center">Registro monitoreo 
             <br>Limpieza y sanitizacion
             
         </div>
@@ -32,35 +30,30 @@
 
 
     </div>
-    <!-- <div class="row">
-    <div class="col-sm-6 font-weight-bold letratitulo text-center ">Codigo: </div>
-            <div class="col-sm-6 font-weight-bold letratitulo text-right ">Revisión N°</div>
-            
-        </div>
-    <div class="row">
-        <div class="col-sm-6 text-left font-weight-bold letratitulo">Planta proceso sala de xxxx</div> -->
-        <div class="col-sm-6 font-weight-bold letratitulo text-right">Mes: {{   date('m', strtotime($plant2->created_at)) }}</div>
+    <br/>
+    <p>
+    <br/>
+    <p>
+    <br/>
+    <p>
+    <div class="col-sm-6 font-weight-bold letratitulo text-right">Mes: {{   date('m-Y', strtotime($plant2->created_at)) }}</div>
         <!-- <div class="col s4">Área/sección:</div> -->
 
     </div>
-
-    
-
     <table class="table">
         <thead>
           
             <tr class=" text-center ">
                 <th class="letratitulo" Colspan="1">Dias</th>
-                <th class="letratitulo" Colspan="1">Sala</th>
                 <th class="letratitulo" Colspan="1">Equipo 1</th>
                 <th class="letratitulo" Colspan="1">Equipo 2</th>
                 <th class="letratitulo" Colspan="1">Equipo 3</th>
                 <th class="letratitulo" Colspan="1">Pisos</th>
                 <th class="letratitulo" Colspan="1">Paredes</th>
                 <th class="letratitulo" Colspan="1">Basureros</th>
-                <th class="letratitulo" Colspan="1">Observación</th>
-                <th class="letratitulo" Colspan="1">Acciones</th>
-                <!-- <th class="letratitulo" Colspan="3">Acción correctiva</th> -->
+                <th class="letratitulo" Colspan="1">Firma monitor</th>
+                <th class="letratitulo" Colspan="1">Firma verificador</th>
+                <th class="letratitulo" Colspan="3">Acción correctiva</th>
                 
             </tr>
 

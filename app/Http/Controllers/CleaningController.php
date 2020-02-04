@@ -22,6 +22,8 @@ class CleaningController extends Controller
     public function index(Request $request, $id)
     {
         $store = Store::find($id);
+        $this->authorize('pass', $store);
+
         
         $cleanings= $store->cleaning()->name($request->get('name'))->orderBy('ID', 'DESC')->get();
 
@@ -38,7 +40,8 @@ class CleaningController extends Controller
     {
         
         $store = Store::find($id);
-       
+        $this->authorize('pass', $store);
+
 
         
         return view('cleanings.create', compact('store'));
@@ -115,7 +118,9 @@ class CleaningController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Store $store, Cleaning $cleaning)
-    {
+    {        
+        
+        $this->authorize('pass', $store);
         return view('cleanings.show', compact('store', 'cleaning'));
     }
 
@@ -129,6 +134,8 @@ class CleaningController extends Controller
     {
         
         $cleaning = Cleaning::find($id);
+        $this->authorize('pass', $store);
+
         return view('cleanings.edit', compact('cleaning', 'store'));
     }
 
@@ -152,7 +159,6 @@ class CleaningController extends Controller
             'hair' => 'required',
             'nail' => 'required',
             'uniform' => 'required',
-            'rut' => 'required|exists:employees',
             
             
         ]);

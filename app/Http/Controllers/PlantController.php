@@ -23,7 +23,8 @@ class PlantController extends Controller
     {
 
         $store = Store::find($id);
-        
+        $this->authorize('pass', $store);
+
         //$plants2 = $plants->plant->paginate();
         
 
@@ -38,10 +39,7 @@ class PlantController extends Controller
             ->where('stores.id', $store->id)
             ->orderBy('stores.id', 'desc')
             ->get();
-            
-
-
-
+     
         // $plants= $store->room()->plant()->name($request->get('name'))->paginate();
 
      
@@ -124,6 +122,8 @@ class PlantController extends Controller
      */
     public function show( Store $store, Plant $plant)
     {
+        $this->authorize('pass', $store);
+
         return view('plants.show', compact('store', 'plant'));
 
     }
@@ -136,6 +136,8 @@ class PlantController extends Controller
      */
     public function edit(Store $store, Plant $plant)
     {
+        $this->authorize('pass', $store);
+
         $rooms = Room::get();
 
         return view('plants.edit', compact('plant', 'store', 'rooms'));
