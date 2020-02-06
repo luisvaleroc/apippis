@@ -86,7 +86,7 @@ Route::get('stores/{brand}', 'StoreController@show')->name('stores.show')
 Route::delete('stores/{brand}', 'StoreController@destroy')->name('stores.destroy')
 	->middleware('permission:stores.destroy');
 Route::get('stores/{brand}/edit', 'StoreController@edit')->name('stores.edit')
-	->middleware('permission:brands.edit');
+	->middleware('permission:stores.edit');
 
 
 	
@@ -225,6 +225,12 @@ Route::get('brand/users/{user}', 'UserController@brandUsershow')->name('branduse
 
 
 Route::get('/', function () {
+
+	if(auth()->user()->brand_id  == null){
+		return 'No tiene una empresa asignada, comuniquese con soporte';
+	}
+
+return view('welcome');
     return view('welcome');
 });
 

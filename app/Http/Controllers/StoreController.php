@@ -27,6 +27,9 @@ class StoreController extends Controller
         //$user = $user->brand;
         //$user = $user->brand;
 
+        if(auth()->user()->brand_id  == null){
+            return 'No tiene una empresa asignada, comuniquese con soporte';
+        }
         $brand = brand::orderBy('id', 'ASC')
             ->where('id', auth()->user()->brand_id)->first();
         $stores= $brand->Store()->name($request->get('name'))->orderBy('id', 'ASC')->get();

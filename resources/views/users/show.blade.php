@@ -27,16 +27,24 @@
                     <p><strong>Nombre</strong>     {{ $user->name }}</p>
                     <p><strong>Email</strong>      {{ $user->email }}</p>
                     <p><strong>Teleono</strong>      {{ $user->phone }}</p>
-                    <p><strong>Empresa</strong>     <a href="{{ route('changebrand.edit', $user->brand->id ) }}" 
+                    <p><strong>Empresa</strong>     
+                    
+                    
+                    @if($user->brand != null)
+                    <a href="{{ route('changebrand.edit', $user->brand->id ) }}" 
                                         class="">
+                                        
                                         {{ $user->brand->name }}
                                         </a></p>
+                                      
                     <p><strong>Local</strong>
                     @foreach($user->brand->store as $store)
                           {{ $store->name }}.
                             @endforeach
                             </p>
-
+                            @else
+                                        Ninguna Empresa Asignada
+                                        @endif
 
                 </div>
             </div>
