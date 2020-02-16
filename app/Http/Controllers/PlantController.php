@@ -25,13 +25,6 @@ class PlantController extends Controller
         $store = Store::find($id);
         $this->authorize('pass', $store);
 
-        //$plants2 = $plants->plant->paginate();
-        
-
-       // $plants = Plant::get($plants->id)->with(['plant'])->paginate();
-       //$plants = Store::find($id)->with(['r'])->paginate();
-       // $plants = $rooms->plants;
-
         $plants = DB::table('stores')
             ->join('rooms', 'stores.id', '=', 'rooms.store_id')
             ->join('plants', 'rooms.id', '=', 'plants.room_id')
@@ -39,13 +32,7 @@ class PlantController extends Controller
             ->where('stores.id', $store->id)
             ->orderBy('stores.id', 'desc')
             ->get();
-     
-        // $plants= $store->room()->plant()->name($request->get('name'))->paginate();
-
-     
-       // $plants= $room->plant()->paginate();
-
-     
+ 
           return view('plants.index', compact('store', 'plants'));
     }
 
@@ -153,7 +140,17 @@ class PlantController extends Controller
      */
     public function update(Request $request, Store $store, $id)
     {
-
+        
+        $validateData = $request->validate([
+            'equip1' => 'required',
+            'equip2' => 'required',
+            'equip3' => 'required',
+            'floor' => 'required',
+            'wall' => 'required',
+            'dump' => 'required',
+            'action' => 'required',
+            
+        ]);
 
         $plant = Plant::find($id);
 

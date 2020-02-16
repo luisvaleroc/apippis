@@ -98,15 +98,8 @@ class CleaningController extends Controller
         $cleaning->store_id = $store->id;
         $cleaning->photo = $name;
 
-       
         $cleaning->save();
 
-
-    //     $cleaning = Cleaning::create($request->all());
-    
-    //     $cleaning->store()->associate($store)->save();
-    //    $cleaning->employee()->associate($rut)->save();
-    //     // $solidwaste->save();
          return redirect()->route('cleanings.create', $store->id)
          ->with('status', 'Guardado con éxito');
     }
@@ -174,12 +167,7 @@ class CleaningController extends Controller
         }
         $cleaning->save();
 
-
-       
-
         $store = $cleaning->store;
-
-       // $cleaning->update($request->all());
 
         return redirect()->route('cleanings.edit', [$store->id, $cleaning->id] )
         ->with('status', 'Guardado con éxito');

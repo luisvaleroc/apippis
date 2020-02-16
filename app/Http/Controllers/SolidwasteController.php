@@ -60,16 +60,6 @@ class SolidwasteController extends Controller
     public function store(Request $request, Store $store)
     {
         
-
-        // $validator = Validator::make($request->all(), [ 
-        //     'name' => 'required', 
-        //     'address' => 'required', 
-        //     'brand_id' => 'required', 
-           
-        // ]);
-        // if ($validator->fails()) { 
-        //     return response()->json(['error'=>$validator->errors()], 401);            
-        // }
         $validateData = $request->validate([
             'paper' => 'required|numeric',
             'paperboard' => 'required|numeric',
@@ -91,11 +81,8 @@ class SolidwasteController extends Controller
             $file->move(public_path().'/images/', $name);
         }
        
-        //$plant = Plant::create($request->all());
+      
 
-
-            
-           
             $solidwaste->paper = $request->input('paper');
             $solidwaste->paperboard = $request->input('paperboard');
             $solidwaste->plastic = $request->input('plastic');
@@ -108,29 +95,10 @@ class SolidwasteController extends Controller
             $solidwaste->photo = $name;
             $solidwaste->save();
 
-
-
-
-     //   $solidwaste = Solidwaste::create($request->all());
-        
-       
-        
-       
-       // $solidwaste->store()->associate($store)->save();
-
-        // $solidwaste->save();
         return redirect()->route('solidwastes.create', $store->id)
         ->with('status', 'Guardado con éxito');
 
 
-
-
-
-        // return response()->json([
-        //     $solidwaste,
-        //     "message" => "El Local a sido creado correctamente.",
-
-        //     ], 200);
     }
 
     /**
@@ -170,23 +138,6 @@ class SolidwasteController extends Controller
     public function update(Request $request, $id)
     {
         
-
-        // $validator = Validator::make($request->all(), [ 
-        //     'pvc' => 'required', 
-            
-           
-        // ]);
-        // if ($validator->fails()) { 
-        //     return response()->json(['error'=>$validator->errors()], 401);            
-        // // }
-        
-        // $solidwaste->update($request->all());
-        // return response()->json([
-        //     $solidwaste,
-        //     "message" => "La Empresa a sido actualizada correctamente.",
-        
-        // ], 200);
-
         $validateData = $request->validate([
             'paper' => 'required|numeric',
             'paperboard' => 'required|numeric',
@@ -237,11 +188,6 @@ class SolidwasteController extends Controller
         $solidwaste = $solidwaste->delete();
         return back()->with('status', 'Eliminado correctamente');
 
-        // return response()->json([
-            
-        //     "message" => "La planilla a sido eliminada correctamente.",
-        
-        // ], 200); 
     }
 
 
@@ -255,10 +201,6 @@ class SolidwasteController extends Controller
 
          return datatables(Sokidwaste::query())->toJson();
 
-         //return response()->json($solidwastes, 200);
-//este
-        // return response()->json(
-        //     $solidwastes, 200);
         
     }
 }

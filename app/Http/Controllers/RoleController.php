@@ -39,8 +39,8 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'name' => 'required',
-            'slug' => 'required'
+            'name' => 'required|alpha_num|unique:roles',
+            'slug' => 'required|alpha_num|unique:roles'
         ]);
         $role = Role::create($request->all());
         $role->permissions()->sync($request->get('permissions'));
@@ -82,8 +82,8 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
-            'name' => 'required',
-            'slug' => 'required'
+            'name' => 'required|alpha_num',
+            'slug' => 'required|alpha_num'
         ]);
         $role = Role::find($id);
         $role->update($request->all());

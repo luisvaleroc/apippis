@@ -40,7 +40,7 @@ class SectorController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'name' => 'required',
+            'name' => 'required|alpha_num|unique:sectors',
             
         ]);
         
@@ -80,7 +80,10 @@ class SectorController extends Controller
      */
     public function update(Request $request, Sector $sector)
     {
-         
+        $validateData = $request->validate([
+            'name' => 'required|alpha_num',
+            
+        ]);
         $sector->update($request->all());
 
 

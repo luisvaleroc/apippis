@@ -52,8 +52,8 @@ class RoomController extends Controller
     {
 
         $validateData = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required|alpha_num',
+            'description' => 'required|alpha_num',
             
         ]);
         $rooms = Room::create($request->all());
@@ -104,8 +104,8 @@ class RoomController extends Controller
     {
 
         $validateData = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required|alpha_num',
+            'description' => 'required|alpha_num',
             
         ]);
         $room = Room::find($id);

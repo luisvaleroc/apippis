@@ -19,13 +19,7 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {
-     //  $user = Auth::user(); 
-        
-        //$stores= $brand->Store;
-        
-        //$user = Auth::user(); 
-        //$user = $user->brand;
-        //$user = $user->brand;
+     
 
         if(auth()->user()->brand_id  == null){
             return 'No tiene una empresa asignada, comuniquese con soporte';
@@ -34,10 +28,6 @@ class StoreController extends Controller
             ->where('id', auth()->user()->brand_id)->first();
         $stores= $brand->Store()->name($request->get('name'))->orderBy('id', 'ASC')->get();
 
-        //$users = User::name($request->get('name'))->orderBy('id', 'DESC')->paginate();
-
-
-        // return response()->json($brand, 200);
         return view('stores.index', compact('stores', 'brand'));
 
     }
@@ -62,7 +52,7 @@ class StoreController extends Controller
     {
         
         $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
+            'name' => 'required|alpha_num', 
             'address' => 'required', 
            
         ]);
@@ -127,20 +117,8 @@ class StoreController extends Controller
     public function update(Request $request, $id)
     {
         
-
-        // $validator = Validator::make($request->all(), [ 
-        //     'name' => 'required', 
-        //     'address' => 'required', 
-            
-           
-        // ]);
-        // if ($validator->fails()) { 
-        //     return response()->json(['error'=>$validator->errors()], 401);            
-        // }
-       
-       
         $validateData = $request->validate([
-            'name' => 'required',
+            'name' => 'required|alpha_num',
             'address' => 'required',
             
         ]);
