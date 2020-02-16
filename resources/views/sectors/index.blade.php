@@ -10,11 +10,11 @@
                 </div>
                
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                    <a class="navbar-brand" href="#">Empresas</a>
+                    <a class="navbar-sector" href="#">Empresas</a>
                     <ul class="nav nav-pills">
                       <li class="nav-item">
-                        @can('brands.create')
-                        <a href="{{ route('brands.create') }}" 
+                        @can('sectors.create')
+                        <a href="{{ route('sectors.create') }}" 
                         class="btn btn-sm btn-primary pull-right">
                             Crear
                         </a>
@@ -23,14 +23,7 @@
                       
                     </ul>
                     
-                    <!-- {{ Form::open(['route' => 'brands.index', 'method' => 'GET', 'class' => 'form-inline', 'user' => 'search']) }}
-                    <div class="form-group mx-sm-3 mb-2">
-                            {{ Form::text('name', null, ['placeholder' => 'Nombre del rol','class' => 'form-control', 'id' => 'name']) }}
-
-                    </div>
-                          <button type="submit" class="btn btn-primary mb-2">Buscar</button> 
-                            
-                        {{ Form::close() }} -->
+         
 
                         
                   </nav>
@@ -44,23 +37,21 @@
 </div>
 
 <div class="panel-body">
-<table id="brands" class="display nowrap" style="width:100%">
+<table id="sectors" class="display nowrap" style="width:100%">
 
                         <thead class="">
                             <tr>
                                 <th width="10px">ID</th>
                                 <th>Nombre</th>
-                                <th>Sector</th>
                                 <th >Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($brands as $brand)
+                            @foreach($sectors as $sector)
                             <tr>
-                                <td>{{ $brand->id }}</td>
-                                <td>{{ $brand->name }}</td>
-                                <td>{{ $brand->sector->name }}</td>
-                               <td> @include('brands.partials.canlist')</td>
+                                <td>{{ $sector->id }}</td>
+                                <td>{{ $sector->name }}</td>
+                               <td> @include('sectors.partials.canlist')</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -68,14 +59,13 @@
             <tr>
             <th width="10px">ID</th>
                                 <th>Nombre</th>
-                                <th>Sector</th>
                                 <th >Acciones</th>
             </tr>
                     </table>
                 </div>
 <script>
  $(document).ready(function() {
-    var table = $('#brands').DataTable( {
+    var table = $('#sectors').DataTable( {
         
 
         rowReorder: {

@@ -65,26 +65,24 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+           
+           
+    
                 <div class="top-right links">
                     @auth
-                        <!-- <a href="{{ url('/home') }}">Home</a> -->
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                            <a href="{{ route('auth_logout') }}">Salir</a>
                     @endauth
                 </div>
-            @endif
 
             <div class="content">
                 <div class="title m-b-md">
                 <img src="{{ asset('img/logo-2.png') }}" alt="..." width="120" class="img-rounded">
 
                 </div>
-
+                @if(auth()->user()->brand_id  == null)
+	               <h1> No tiene una empresa asignada, comuniquese con soporte</h1>
+	            @endif
                 <div class="links">
                     @can('brands.create')
                     <a href="{{ route('brands.index') }}">Administración</a>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     protected $fillable = [
-        'name', 'sector',
+        'name', 'sector_id',
     ];
 
     public function Store()
@@ -42,6 +42,12 @@ class Brand extends Model
      {
          return $this->hasManyThrough('Caffeinated\Shinobi\Models\Role', 'App\User');
      }
+
+     public function Sector(){
+        return $this->belongsTo('App\Sector');
+    }
+
+   
 }
 
 

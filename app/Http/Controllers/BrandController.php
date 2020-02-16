@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
+use App\Sector;
+
 use Validator;
 
 
@@ -51,7 +53,8 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('brands.create');
+        $sectors = Sector::all();
+        return view('brands.create', compact('sectors'));
 
     }
 
@@ -64,35 +67,16 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         
-        // $validator = Validator::make($request->all(), [ 
-        //     'name' => 'required', 
-        //     'sector' => 'required', 
-           
-        // ]);
-// if ($validator->fails()) { 
-//             return response()->json(['error'=>$validator->errors()], 401);            
-//         }
+      
 
 $validateData = $request->validate([
     'name' => 'required',
     'sector' => 'required'
 ]);
 
-        $brand = brand::create($request->all());
-        
-            // return response()->json([
-            //     "message" => "La empresa a sido creada correctamente.",
-            //     "empleado" => $request
-            // ], 200);  
-            
-            //return response()->json($brand, 200);
-            
-            //este si
-            // return response()->json([
-            //     $brand,
-            //     "message" => "La Empresa a sido creada correctamente.",
+        $brand = brand::create($request->except(['sector']));
+        $brand->sector()->associate($request->input('sector'))->save();
 
-            // ], 200);
 
             return redirect()->route('brands.create', $brand->id)
             ->with('status', 'Empresa guardada con éxito');
@@ -122,12 +106,9 @@ $validateData = $request->validate([
     public function edit($id)
     {
         
-        //return response()->json($brand, 200);
-
-
-
         $brand = Brand::find($id);
-        return view('brands.edit', compact('brand'));
+        $sectors = Sector::all();
+        return view('brands.edit', compact('brand', 'sectors'));
     }
 
     /**
@@ -141,8 +122,9 @@ $validateData = $request->validate([
     {
         
         
-        $brand->update($request->all());
+        $brand->update($request->except(['sector']));
 
+        $brand->sector()->associate($request->input('sector'))->save();
 
         return redirect()->route('brands.edit', $brand->id)
         ->with('status', 'Guardado con éxito');

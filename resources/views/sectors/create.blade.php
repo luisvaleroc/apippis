@@ -7,12 +7,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                 <nav id="navbar-central" class="navbar navbar-light bg-light">
-                                <a class="navbar-brand" href="#">Empresa</a>
+                                <a class="navbar-sector" href="#">sectors</a>
                                 <ul class="nav nav-pills">
                                
                                   <li class="nav-item">
-                                        @can('brands.index')
-                                        <a href="{{ route('brands.index') }}" 
+                                        @can('sectors.index')
+                                        <a href="{{ route('sectors.index') }}" 
                                         class="btn btn-sm btn-success pull-right">
                                             Ver
                                         </a>
@@ -28,9 +28,9 @@
 
                 
                 <div class="panel-body">                    
-                    {{ Form::open(['route' => 'brands.store']) }}
+                    {{ Form::open(['route' => 'sectors.store']) }}
 
-                        @include('brands.partials.form')
+                        @include('sectors.partials.form')
                         
                     {{ Form::close() }}
                 </div>

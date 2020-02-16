@@ -70,6 +70,24 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('brands/{brand}/edit', 'BrandController@edit')->name('brands.edit')
 		->middleware('permission:brands.edit');
 
+			//Sectors
+	Route::post('sector/store', 'SectorController@store')->name('sectors.store')
+	->middleware('permission:sectors.create');
+	
+Route::get('sectors', 'SectorController@index')->name('sectors.index')
+	->middleware('permission:sectors.index');
+Route::get('sectors/create', 'SectorController@create')->name('sectors.create')
+	->middleware('permission:sectors.create');
+Route::put('sectors/{sector}', 'SectorController@update')->name('sectors.update')
+	->middleware('permission:sectors.edit');
+Route::get('sectors/{sector}', 'SectorController@show')->name('sectors.show')
+	->middleware('permission:sectors.show');
+Route::delete('sectors/{sector}', 'SectorController@destroy')->name('sectors.destroy')
+	->middleware('permission:sectors.destroy');
+Route::get('sectors/{sector}/edit', 'SectorController@edit')->name('sectors.edit')
+	->middleware('permission:sectors.edit');
+
+
 
 		//stores
 	Route::post('stores/store', 'StoreController@store')->name('stores.store')
@@ -212,29 +230,21 @@ Route::get('brand/users/{user}', 'UserController@brandUsershow')->name('branduse
 
 
 
-// Route::get('store/users/{user}', 'UserController@BrandUser')->name('Storebrand.index')
-// ->middleware('permission:StoreBrand.index');
-
-// Route::get('store/users/{user}/store', 'UserController@BrandUserUpdate')->name('brandusers.update')
-// ->middleware('permission:brandusers.update');
-
-
-
-// Route::get('store/users/{user}', 'UserController@BrandUser')->name('Storebrand.index')
-// ->middleware('permission:StoreBrand.index');
-
-
 Route::get('/', function () {
 
-	if(auth()->user()->brand_id  == null){
-		return 'No tiene una empresa asignada, comuniquese con soporte';
-	}
+
 
 return view('welcome');
-    return view('welcome');
+ 
 });
 
 
+Route::get('/logout', function () {
+
+	Auth::logout();
+
+	return redirect('login');
+})->name('auth_logout'); 
 });
 
 //pdf

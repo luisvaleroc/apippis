@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'PPIS') }}</title>
 
     <!-- Scripts -->
 
@@ -74,6 +74,7 @@
                          <a class="dropdown-item" href="{{ route('users.index') }}">Usuarios</a>
                          <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
                           <a class="dropdown-item" href="{{ route('brands.index') }}">Empresas</a>
+                          <a class="dropdown-item" href="{{ route('sectors.index') }}">Sectores</a>
                           <div class="dropdown-divider"></div>
                           @endcan
                         </div> 
