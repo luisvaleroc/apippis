@@ -80,9 +80,7 @@
                 <img src="{{ asset('img/logo-2.png') }}" alt="..." width="120" class="img-rounded">
 
                 </div>
-                @if(auth()->user()->brand_id  == null)
-	               <h1> No tiene una empresa asignada, comuniquese con soporte</h1>
-	            @endif
+              
                 <div class="links">
                     @can('brands.create')
                     <a href="{{ route('brands.index') }}">Administración</a>
@@ -90,7 +88,9 @@
                     @can('stores.create')
                     <a href="{{ route('stores.index') }}">Locales</a>
                     @endcan
-                   @if(auth()->user()->store != null)
+                  
+                   @if (isset(auth()->user()->store)) {
+
 
                     @can('stores.show')
                     <a href="{{ route('stores.show', auth()->user()->store->id) }}">Planillas</a>

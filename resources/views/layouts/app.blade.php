@@ -59,11 +59,14 @@
                       <li class="nav-item">
                         <a class="nav-link" href="{{ route('roles.index') }}">roles</a>
                       </li> -->
+                      
+                     @if (isset(auth()->user()->brand_id))
                       @can('stores.create')
                       <li class="nav-item">
                         <a class="nav-link" href="{{ route('stores.index') }}">Locales</a>
                       </li>
                       @endcan
+                      @endif
                       @can('users.create')
                       <li class="nav-item dropdown">
                     

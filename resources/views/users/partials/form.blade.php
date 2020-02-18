@@ -14,7 +14,7 @@
 		@endforeach
     </select>
 
-	<h3>¿El Usuario es dueño?</h3>
+	<h3>¿Empleado PPIS?</h3>
 <div class="form-group">
  	<label>{{ Form::radio('owner', 'si') }} Si</label>
  	<label>{{ Form::radio('owner', ' ') }} No</label>

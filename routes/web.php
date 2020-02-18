@@ -231,8 +231,15 @@ Route::get('brand/users/{user}', 'UserController@brandUsershow')->name('branduse
 
 
 Route::get('/', function () {
+	
+	if(auth()->user()->brand_id  == null && auth()->user()->owner == null ){
+		
+		return 'No tiene una empresa asignada, comuniquese con soporte'. Auth::logout();
+		//sleep(10);
 
-
+	}
+	 
+	
 
 return view('welcome');
  
