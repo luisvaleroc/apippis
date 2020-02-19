@@ -70,7 +70,7 @@ class BrandController extends Controller
       
 
 $validateData = $request->validate([
-    'name' => 'required|alpha_num',
+    'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
     'sector' => 'required'
 ]);
 
@@ -121,7 +121,7 @@ $validateData = $request->validate([
     public function update(Request $request, brand $brand)
     {
         $validateData = $request->validate([
-            'name' => 'required|alpha_num',
+            'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
             'sector' => 'required'
         ]);
         

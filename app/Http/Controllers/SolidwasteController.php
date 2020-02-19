@@ -190,9 +190,6 @@ class SolidwasteController extends Controller
 
     }
 
-
-
-
     public function datasolidwastes()
     {
          $store = Store::find($id);

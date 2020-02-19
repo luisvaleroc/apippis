@@ -40,7 +40,7 @@ class SectorController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'name' => 'required|alpha_num|unique:sectors',
+            'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u|unique:sectors',
             
         ]);
         
@@ -81,7 +81,7 @@ class SectorController extends Controller
     public function update(Request $request, Sector $sector)
     {
         $validateData = $request->validate([
-            'name' => 'required|alpha_num',
+            'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
             
         ]);
         $sector->update($request->all());

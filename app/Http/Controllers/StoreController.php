@@ -52,7 +52,7 @@ class StoreController extends Controller
     {
         
         $validator = Validator::make($request->all(), [ 
-            'name' => 'required|alpha_num', 
+            'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u', 
             'address' => 'required', 
            
         ]);
@@ -72,13 +72,7 @@ class StoreController extends Controller
         $store->save();
         return redirect()->route('stores.create', $store->id)
         ->with('status', 'Local guardado con éxito');
-        //$store = Store::create($request->all());
-        
-        // return response()->json([
-        //     $store,
-        //     "message" => "El Local a sido creado correctamente.",
-
-        //     ], 200);
+ 
     }
 
     /**
@@ -118,7 +112,7 @@ class StoreController extends Controller
     {
         
         $validateData = $request->validate([
-            'name' => 'required|alpha_num',
+            'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
             'address' => 'required',
             
         ]);
@@ -130,11 +124,7 @@ class StoreController extends Controller
         ->with('status', 'Encuesta guardada con éxito');
 
         $store->update($request->all());
-        // return response()->json([
-        //     $store,
-        //     "message" => "La Empresa a sido actualizada correctamente.",
-        
-        // ], 200);
+    
     }
 
     /**
@@ -148,11 +138,5 @@ class StoreController extends Controller
         $user = Store::find($id)->delete();
         return back()->with('status', 'Eliminado correctamente');
 
-        // $store = $store->delete();
-        // return response()->json([
-            
-        //     "message" => "El local a sido eliminado correctamente.",
-        
-        // ], 200); 
     }
 }

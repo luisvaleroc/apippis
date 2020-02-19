@@ -50,8 +50,8 @@ class EmployeeController extends Controller
     public function store(Request $request, Store $store)
     {
         $validateData = $request->validate([
-            'name' => 'required|alpha_num',
-            'rut' => 'required|alpha_num'
+            'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
+            'rut' => 'required|alpha_dash'
         ]);
        
         $employee = Employee::create($request->all());
@@ -103,8 +103,8 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
-            'name' => 'required|alpha_num',
-            'rut' => 'required|alpha_num'
+            'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
+            'rut' => 'required|alpha_dash'
         ]);
 
         $employee = Employee::find($id);

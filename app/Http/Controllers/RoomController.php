@@ -52,8 +52,8 @@ class RoomController extends Controller
     {
 
         $validateData = $request->validate([
-            'name' => 'required|alpha_num',
-            'description' => 'required|alpha_num',
+            'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
+            'description' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
             
         ]);
         $rooms = Room::create($request->all());
@@ -104,8 +104,8 @@ class RoomController extends Controller
     {
 
         $validateData = $request->validate([
-            'name' => 'required|alpha_num',
-            'description' => 'required|alpha_num',
+            'name' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
+            'description' => 'required|regex:/^[A-Za-z0-9\s]+$/u',
             
         ]);
         $room = Room::find($id);
